@@ -6,6 +6,7 @@ import Layout from "@/components/layout/Layout";
 import PostCard from "@/components/blog/PostCard";
 import NewsletterForm from "@/components/shared/NewsletterForm";
 import TableOfContents, { extractHeadings } from "@/components/blog/TableOfContents";
+import ReadingProgressBar from "@/components/blog/ReadingProgressBar";
 import SEO from "@/components/SEO";
 import { getPostBySlug, getRelatedPosts } from "@/data/posts";
 import { toast } from "@/hooks/use-toast";
