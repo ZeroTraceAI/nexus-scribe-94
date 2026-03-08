@@ -35,6 +35,7 @@ interface FAQItem {
 interface SEOProps {
   title?: string;
   description?: string;
+  keywords?: string;
   canonical?: string;
   ogType?: "website" | "article";
   ogImage?: string;
@@ -159,6 +160,7 @@ const getFAQJsonLd = (items: FAQItem[]) => ({
 const SEO = ({
   title,
   description = "Expert tutorials, analysis, and tools for developers and security professionals navigating cybersecurity, AI, cloud, blockchain, and modern programming.",
+  keywords,
   canonical,
   ogType = "website",
   ogImage = "/og-default.png",
@@ -172,7 +174,7 @@ const SEO = ({
 }: SEOProps) => {
   const fullTitle = title
     ? `${title} | CodeSecAI`
-    : "CodeSecAI — Security, AI & Code Deep Dives";
+    : "CodeSecAI — Cybersecurity, AI & Programming Tutorials";
   const canonicalUrl = canonical ? `${BASE_URL}${canonical}` : undefined;
   const ogImageUrl = ogImage.startsWith("http") ? ogImage : `${BASE_URL}${ogImage}`;
 
@@ -203,14 +205,23 @@ const SEO = ({
     <Helmet>
       <title>{fullTitle}</title>
       <meta name="description" content={description} />
+      {keywords && <meta name="keywords" content={keywords} />}
       {canonicalUrl && <link rel="canonical" href={canonicalUrl} />}
-      {noindex && <meta name="robots" content="noindex,nofollow" />}
+      {noindex ? (
+        <meta name="robots" content="noindex,nofollow" />
+      ) : (
+        <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+      )}
+      <meta name="author" content="CodeSecAI" />
+      <meta property="og:locale" content="en_US" />
 
       {/* Open Graph */}
       <meta property="og:title" content={fullTitle} />
       <meta property="og:description" content={description} />
       <meta property="og:type" content={ogType} />
       <meta property="og:image" content={ogImageUrl} />
+      <meta property="og:image:width" content="1200" />
+      <meta property="og:image:height" content="630" />
       {canonicalUrl && <meta property="og:url" content={canonicalUrl} />}
       <meta property="og:site_name" content="CodeSecAI" />
 

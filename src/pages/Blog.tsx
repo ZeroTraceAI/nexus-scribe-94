@@ -36,8 +36,9 @@ const Blog = () => {
   return (
     <Layout>
       <SEO
-        title="Blog"
-        description="Expert articles on cybersecurity, AI, cloud computing, blockchain, and programming."
+        title="Blog — Cybersecurity, AI & Dev Tutorials"
+        description="Read expert articles on cybersecurity, artificial intelligence, cloud computing, blockchain development, and programming. In-depth tutorials, guides, and security analysis updated weekly."
+        keywords="cybersecurity blog, AI tutorials, cloud computing articles, blockchain guides, programming tutorials, secure coding, penetration testing, machine learning blog, DevOps guides, web security articles"
         canonical="/blog"
         breadcrumbs={[
           { name: "Home", path: "/" },

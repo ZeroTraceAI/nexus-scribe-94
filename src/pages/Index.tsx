@@ -17,9 +17,17 @@ const Index = () => {
   return (
     <Layout>
       <SEO
+        title="Cybersecurity, AI & Programming Tutorials"
+        description="Learn cybersecurity, artificial intelligence, cloud computing, blockchain, and programming with expert tutorials, in-depth guides, and free AI-powered developer tools. Updated daily."
+        keywords="cybersecurity tutorials, AI programming, cloud computing guides, blockchain development, secure coding, penetration testing, machine learning, DevOps, web security, coding best practices, free developer tools"
         canonical="/"
         includeOrgJsonLd
         breadcrumbs={[{ name: "Home", path: "/" }]}
+        faqJsonLd={[
+          { question: "What is CodeSecAI?", answer: "CodeSecAI is a free resource providing expert tutorials, analysis, and AI-powered tools for developers and security professionals covering cybersecurity, AI, cloud computing, blockchain, and programming." },
+          { question: "Are CodeSecAI tools free?", answer: "Yes, all AI-powered developer tools on CodeSecAI are completely free with no signup required — including code generators, vulnerability explainers, SEO analyzers, and more." },
+          { question: "What topics does CodeSecAI cover?", answer: "CodeSecAI covers cybersecurity (penetration testing, secure coding, vulnerability analysis), artificial intelligence (machine learning, LLMs, RAG systems), cloud computing (AWS, Kubernetes, DevOps), blockchain (smart contracts, Web3), and modern programming (Rust, Go, TypeScript)." },
+        ]}
       />
       {/* Hero */}
       <section className="hero-gradient relative overflow-hidden">
@@ -29,11 +37,11 @@ const Index = () => {
               <Sparkles className="h-3 w-3" /> Where Code Meets Security & Intelligence
             </span>
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-black text-foreground leading-tight mb-6 tracking-tight">
-              Deep Dives Into<br />
-              <span className="text-gradient">Security, AI & Code</span>
+              Cybersecurity, AI &<br />
+              <span className="text-gradient">Programming Tutorials</span>
             </h1>
             <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-8 leading-relaxed">
-              Expert tutorials, analysis, and tools for developers and security professionals navigating cybersecurity, artificial intelligence, cloud, blockchain, and modern programming.
+              Expert tutorials on cybersecurity, artificial intelligence, cloud computing, blockchain, and modern programming. Free AI-powered developer tools included.
             </p>
             <div className="flex flex-col sm:flex-row gap-3 justify-center">
               <Link to="/blog">

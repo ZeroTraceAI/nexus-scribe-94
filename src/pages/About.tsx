@@ -6,8 +6,9 @@ import { getCategoryIcon } from "@/data/categories";
 const About = () => (
   <Layout>
     <SEO
-      title="About"
-      description="Learn about CodeSecAI — our mission to bridge the knowledge gap in cybersecurity, AI, cloud computing, blockchain, and programming."
+      title="About — Our Mission in Cybersecurity & AI Education"
+      description="Learn about CodeSecAI — a free resource bridging the knowledge gap in cybersecurity, artificial intelligence, cloud computing, blockchain, and programming with expert tutorials and AI-powered tools."
+      keywords="about CodeSecAI, cybersecurity education, AI learning resources, cloud computing tutorials, blockchain education, developer community, security professionals"
       canonical="/about"
       includeOrgJsonLd
       breadcrumbs={[
