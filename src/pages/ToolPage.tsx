@@ -18,6 +18,15 @@ import VulnExplainer from "@/components/tools/VulnExplainer";
 import CloudArchHelper from "@/components/tools/CloudArchHelper";
 import SmartContractAuditor from "@/components/tools/SmartContractAuditor";
 import CodeExplainer from "@/components/tools/CodeExplainer";
+import KeywordClusterGenerator from "@/components/tools/KeywordClusterGenerator";
+import ViralTopicFinder from "@/components/tools/ViralTopicFinder";
+import SerpCalculator from "@/components/tools/SerpCalculator";
+import SeoTagGenerator from "@/components/tools/SeoTagGenerator";
+import SlugOptimizer from "@/components/tools/SlugOptimizer";
+import BlogTitleGenerator from "@/components/tools/BlogTitleGenerator";
+import ContentSeoAnalyzer from "@/components/tools/ContentSeoAnalyzer";
+import CyberRiskScanner from "@/components/tools/CyberRiskScanner";
+import SaasRevenueCalculator from "@/components/tools/SaasRevenueCalculator";
 
 const RegexTester = () => {
   const [pattern, setPattern] = useState("");
