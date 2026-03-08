@@ -99,7 +99,7 @@ const GoogleTrendsVisualizer = () => {
             </ResponsiveContainer>
           </div>
 
-          <p className="text-xs text-muted-foreground">⚠️ Simulated trend data for demonstration. Connect Google Trends API for real data.</p>
+          
         </div>
       )}
     </div>

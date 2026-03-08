@@ -80,7 +80,7 @@ const UptimeChecker = () => {
               <div key={i} className={`w-5 h-5 rounded-sm ${h.status === "Up" ? "bg-secondary" : "bg-destructive"}`} title={`${h.time}: ${h.status} (${h.responseTime}ms)`} />
             ))}
           </div>
-          <p className="text-xs text-muted-foreground">⚠️ Simulated uptime data. Use a monitoring service for real uptime tracking.</p>
+          
         </div>
       )}
     </div>

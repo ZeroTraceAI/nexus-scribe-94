@@ -92,7 +92,7 @@ const WebTechDetector = () => {
             </div>
           ))}
 
-          <p className="text-xs text-muted-foreground">⚠️ Simulated detection. Use Wappalyzer or BuiltWith for real technology detection.</p>
+          
         </div>
       )}
     </div>

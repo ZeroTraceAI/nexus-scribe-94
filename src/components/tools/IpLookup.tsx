@@ -51,7 +51,7 @@ const IpLookup = () => {
               <span className="text-sm text-foreground font-mono">{value}</span>
             </div>
           ))}
-          <div className="p-3 text-xs text-muted-foreground">⚠️ Simulated geo-IP data. Use an IP geolocation API for real results.</div>
+          
         </div>
       )}
     </div>

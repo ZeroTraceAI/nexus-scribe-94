@@ -97,7 +97,7 @@ const SecurityHeaderChecker = () => {
             ))}
           </div>
 
-          <p className="text-xs text-muted-foreground">⚠️ Simulated header analysis. For real results, use a server-side scanner or browser DevTools Network tab.</p>
+          
         </div>
       )}
     </div>

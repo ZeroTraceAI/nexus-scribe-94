@@ -92,7 +92,7 @@ const DnsLookup = () => {
               </div>
             ))}
           </div>
-          <p className="text-xs text-muted-foreground">⚠️ Simulated DNS records. Use dig, nslookup, or a DNS API for real records.</p>
+          
         </div>
       )}
     </div>

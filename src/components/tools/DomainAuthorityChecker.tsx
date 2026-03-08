@@ -110,7 +110,7 @@ const DomainAuthorityChecker = () => {
             ))}
           </div>
 
-          <p className="text-xs text-muted-foreground">⚠️ Simulated metrics for demonstration. Use Moz, Ahrefs, or Semrush APIs for real data.</p>
+          
         </div>
       )}
     </div>
