@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 const CookiePolicy = () => {
   return (
     <Layout>
-      <SEO title="Cookie Policy" description="Learn about the cookies and tracking technologies used on the CodeSecAI website." canonical="/cookie-policy" />
+      <SEO title="Cookie Policy" description="Learn about the cookies and tracking technologies used on the CodeSecAI website." canonical="/cookie-policy" breadcrumbs={[{ name: "Home", path: "/" }, { name: "Cookie Policy", path: "/cookie-policy" }]} />
       <div className="container py-12 max-w-4xl">
         <nav className="flex items-center gap-2 text-sm text-muted-foreground mb-8">
           <Link to="/" className="hover:text-primary">Home</Link>

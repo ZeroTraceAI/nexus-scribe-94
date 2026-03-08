@@ -9,6 +9,7 @@ const Subscribe = () => (
       title="Subscribe"
       description="Get weekly deep dives on cybersecurity, AI, cloud computing, blockchain, and programming delivered free to your inbox."
       canonical="/subscribe"
+      breadcrumbs={[{ name: "Home", path: "/" }, { name: "Subscribe", path: "/subscribe" }]}
     />
     <div className="container py-16 max-w-xl mx-auto text-center">
       <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-3">Stay Ahead of the Curve</h1>
