@@ -243,18 +243,22 @@ const severityColor: Record<string, string> = {
   Low: "bg-muted text-muted-foreground",
 };
 
+const categories = ["All", ...Array.from(new Set(vulnDatabase.map(v => v.category)))];
+
 const VulnExplainer = () => {
   const [search, setSearch] = useState("");
+  const [category, setCategory] = useState("All");
   const [selected, setSelected] = useState<Vulnerability | null>(null);
 
-  const filtered = search.trim()
-    ? vulnDatabase.filter(v =>
-        v.name.toLowerCase().includes(search.toLowerCase()) ||
-        v.id.toLowerCase().includes(search.toLowerCase()) ||
-        v.aliases.some(a => a.includes(search.toLowerCase())) ||
-        v.category.toLowerCase().includes(search.toLowerCase())
-      )
-    : vulnDatabase;
+  const filtered = vulnDatabase.filter(v => {
+    const matchesCategory = category === "All" || v.category === category;
+    const matchesSearch = !search.trim() ||
+      v.name.toLowerCase().includes(search.toLowerCase()) ||
+      v.id.toLowerCase().includes(search.toLowerCase()) ||
+      v.aliases.some(a => a.includes(search.toLowerCase())) ||
+      v.category.toLowerCase().includes(search.toLowerCase());
+    return matchesCategory && matchesSearch;
+  });
 
   return (
     <div className="space-y-6">
@@ -268,9 +272,18 @@ const VulnExplainer = () => {
         />
       </div>
 
+      <div>
+        <label className="text-sm font-medium text-foreground mb-1 block">Category</label>
+        <div className="flex flex-wrap gap-2">
+          {categories.map(c => (
+            <Button key={c} size="sm" variant={category === c ? "default" : "outline"} onClick={() => { setCategory(c); setSelected(null); }}>{c}</Button>
+          ))}
+        </div>
+      </div>
+
       {!selected ? (
         <div className="space-y-2">
-          <p className="text-sm text-muted-foreground">{filtered.length} vulnerabilities</p>
+          <p className="text-sm text-muted-foreground">{filtered.length} vulnerabilit{filtered.length !== 1 ? "ies" : "y"}</p>
           {filtered.map(v => (
             <button
               key={v.id}
