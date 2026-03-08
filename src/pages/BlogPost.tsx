@@ -46,10 +46,12 @@ const BlogPost = () => {
     window.open(urls[platform], "_blank", "noopener,noreferrer");
   };
 
+  const slugify = (text: string) => text.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
+
   const renderContent = (content: string) => {
     return content.split("\n").map((line, i) => {
-      if (line.startsWith("## ")) return <h2 key={i} className="text-xl font-bold text-foreground mt-8 mb-4">{line.slice(3)}</h2>;
-      if (line.startsWith("### ")) return <h3 key={i} className="text-lg font-semibold text-foreground mt-6 mb-3">{line.slice(4)}</h3>;
+      if (line.startsWith("## ")) { const text = line.slice(3); return <h2 key={i} id={slugify(text)} className="text-xl font-bold text-foreground mt-8 mb-4 scroll-mt-24">{text}</h2>; }
+      if (line.startsWith("### ")) { const text = line.slice(4); return <h3 key={i} id={slugify(text)} className="text-lg font-semibold text-foreground mt-6 mb-3 scroll-mt-24">{text}</h3>; }
       if (line.startsWith("```")) {
         return null; // simplified — code blocks handled below
       }
