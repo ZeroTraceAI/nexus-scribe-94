@@ -8,6 +8,7 @@ import Index from "./pages/Index";
 import Blog from "./pages/Blog";
 import BlogPost from "./pages/BlogPost";
 import Category from "./pages/Category";
+import AuthorPage from "./pages/AuthorPage";
 import Tools from "./pages/Tools";
 import ToolPage from "./pages/ToolPage";
 import About from "./pages/About";
@@ -34,6 +35,7 @@ const App = () => (
             <Route path="/blog" element={<Blog />} />
             <Route path="/blog/:slug" element={<BlogPost />} />
             <Route path="/category/:slug" element={<Category />} />
+            <Route path="/author/:slug" element={<AuthorPage />} />
             <Route path="/tools" element={<Tools />} />
             <Route path="/tools/:slug" element={<ToolPage />} />
             <Route path="/about" element={<About />} />
