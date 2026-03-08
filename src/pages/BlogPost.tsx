@@ -91,6 +91,7 @@ const BlogPost = () => {
 
   return (
     <Layout>
+      <ReadingProgressBar />
       <SEO
         title={post.title}
         description={post.excerpt}
