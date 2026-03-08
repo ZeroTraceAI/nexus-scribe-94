@@ -9,6 +9,8 @@ const PostCard = ({ post }: { post: BlogPost }) => (
         <img
           src={post.featuredImage}
           alt={post.title}
+          width={640}
+          height={360}
           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
           loading="lazy"
         />
@@ -25,7 +27,7 @@ const PostCard = ({ post }: { post: BlogPost }) => (
         </p>
         <div className="flex items-center justify-between text-xs text-muted-foreground">
           <div className="flex items-center gap-2">
-            <img src={post.author.avatar} alt={post.author.name} className="h-5 w-5 rounded-full" loading="lazy" />
+            <img src={post.author.avatar} alt={post.author.name} width={20} height={20} className="h-5 w-5 rounded-full" loading="lazy" />
             <span>{post.author.name}</span>
           </div>
           <div className="flex items-center gap-3">
