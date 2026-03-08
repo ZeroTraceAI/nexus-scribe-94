@@ -5882,7 +5882,7 @@ spec:
       input:
         url: ./skeleton
         values:
-          name: \${{ "parameters.serviceName" }}
+          name: \$\{{ parameters.serviceName }}
     - id: publish
       action: publish:github
     - id: create-infra
