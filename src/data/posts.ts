@@ -6468,7 +6468,7 @@ Account abstraction is making crypto usable by normal people. In 2026, the best 
     viewCount: 5670,
     commentCount: 28,
     featured: false,
-    featuredImage: "https://images.unsplash.com/photo-1622630998477-20aa696ecb05?w=800&q=80",
+    featuredImage: "https://picsum.photos/seed/privacy-gdpr/800/450",
   },
   {
     id: "29",
@@ -6687,7 +6687,7 @@ Rust backend development in 2026 is productive, performant, and reliable. Axum p
     viewCount: 8430,
     commentCount: 46,
     featured: true,
-    featuredImage: "https://images.unsplash.com/photo-1515879218367-8466d910auj7?w=800&q=80",
+    featuredImage: "https://picsum.photos/seed/devops-monitoring/800/450",
   },
   {
     id: "30",
@@ -6874,7 +6874,7 @@ WebAssembly beyond the browser is not hype — it's production reality in 2026. 
     viewCount: 4920,
     commentCount: 22,
     featured: false,
-    featuredImage: "https://images.unsplash.com/photo-1518432031352-d6fc5c10da5a?w=800&q=80",
+    featuredImage: "https://picsum.photos/seed/terminal-linux/800/450",
   },
 ];
 
