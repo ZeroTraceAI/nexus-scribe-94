@@ -103,70 +103,80 @@ const BlogPost = () => {
       </div>
 
       <article className="container pb-16">
-        <div className="max-w-3xl mx-auto">
-          <Link to="/blog" className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-primary mb-6">
-            <ArrowLeft className="h-4 w-4" /> Back to articles
-          </Link>
+        <div className="flex gap-10 relative">
+          {/* Main content */}
+          <div className="max-w-3xl flex-1 min-w-0">
+            <Link to="/blog" className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-primary mb-6">
+              <ArrowLeft className="h-4 w-4" /> Back to articles
+            </Link>
 
-          <span className="inline-block text-xs font-semibold text-primary bg-primary/10 rounded-full px-3 py-1 mb-4">
-            {post.categoryName}
-          </span>
+            <span className="inline-block text-xs font-semibold text-primary bg-primary/10 rounded-full px-3 py-1 mb-4">
+              {post.categoryName}
+            </span>
 
-          <h1 className="text-3xl md:text-4xl font-bold text-foreground leading-tight mb-4">{post.title}</h1>
+            <h1 className="text-3xl md:text-4xl font-bold text-foreground leading-tight mb-4">{post.title}</h1>
 
-          <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground mb-6">
-            <div className="flex items-center gap-2">
-              <img src={post.author.avatar} alt={post.author.name} className="h-8 w-8 rounded-full" />
-              <div>
-                <p className="font-medium text-foreground text-sm">{post.author.name}</p>
-                <p className="text-xs">{post.author.role}</p>
+            <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground mb-6">
+              <div className="flex items-center gap-2">
+                <img src={post.author.avatar} alt={post.author.name} className="h-8 w-8 rounded-full" />
+                <div>
+                  <p className="font-medium text-foreground text-sm">{post.author.name}</p>
+                  <p className="text-xs">{post.author.role}</p>
+                </div>
               </div>
+              <span className="flex items-center gap-1"><Calendar className="h-3.5 w-3.5" />{new Date(post.publishedAt).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })}</span>
+              <span className="flex items-center gap-1"><Clock className="h-3.5 w-3.5" />{post.readingTime} min read</span>
+              <span className="flex items-center gap-1"><Eye className="h-3.5 w-3.5" />{post.viewCount.toLocaleString()} views</span>
             </div>
-            <span className="flex items-center gap-1"><Calendar className="h-3.5 w-3.5" />{new Date(post.publishedAt).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })}</span>
-            <span className="flex items-center gap-1"><Clock className="h-3.5 w-3.5" />{post.readingTime} min read</span>
-            <span className="flex items-center gap-1"><Eye className="h-3.5 w-3.5" />{post.viewCount.toLocaleString()} views</span>
-          </div>
 
-          <img src={post.featuredImage} alt={post.title} className="w-full rounded-lg mb-8 aspect-video object-cover" />
+            <img src={post.featuredImage} alt={post.title} className="w-full rounded-lg mb-8 aspect-video object-cover" />
 
-          <div className="prose-custom">
-            {contentWithCode}
-          </div>
+            <div className="prose-custom">
+              {contentWithCode}
+            </div>
 
-          {/* Tags */}
-          <div className="flex flex-wrap gap-2 mt-8">
-            {post.tags.map(tag => (
-              <Link key={tag} to={`/tag/${tag}`} className="text-xs bg-muted text-muted-foreground px-2.5 py-1 rounded-full hover:bg-primary/10 hover:text-primary transition-colors">
-                #{tag}
-              </Link>
-            ))}
-          </div>
+            {/* Tags */}
+            <div className="flex flex-wrap gap-2 mt-8">
+              {post.tags.map(tag => (
+                <Link key={tag} to={`/tag/${tag}`} className="text-xs bg-muted text-muted-foreground px-2.5 py-1 rounded-full hover:bg-primary/10 hover:text-primary transition-colors">
+                  #{tag}
+                </Link>
+              ))}
+            </div>
 
-          {/* Share */}
-          <div className="flex items-center gap-3 mt-8 pt-6 border-t">
-            <span className="text-sm font-medium text-foreground">Share:</span>
-            <Button variant="outline" size="sm" onClick={() => handleShare("twitter")}>Twitter</Button>
-            <Button variant="outline" size="sm" onClick={() => handleShare("linkedin")}>LinkedIn</Button>
-            <Button variant="outline" size="sm" onClick={() => handleShare("reddit")}>Reddit</Button>
-            <Button variant="outline" size="sm" onClick={handleCopyLink} className="gap-1">
-              {copied ? <Check className="h-3 w-3" /> : <Copy className="h-3 w-3" />} {copied ? "Copied" : "Copy Link"}
-            </Button>
-          </div>
+            {/* Share */}
+            <div className="flex items-center gap-3 mt-8 pt-6 border-t">
+              <span className="text-sm font-medium text-foreground">Share:</span>
+              <Button variant="outline" size="sm" onClick={() => handleShare("twitter")}>Twitter</Button>
+              <Button variant="outline" size="sm" onClick={() => handleShare("linkedin")}>LinkedIn</Button>
+              <Button variant="outline" size="sm" onClick={() => handleShare("reddit")}>Reddit</Button>
+              <Button variant="outline" size="sm" onClick={handleCopyLink} className="gap-1">
+                {copied ? <Check className="h-3 w-3" /> : <Copy className="h-3 w-3" />} {copied ? "Copied" : "Copy Link"}
+              </Button>
+            </div>
 
-          {/* Newsletter */}
-          <div className="mt-12">
-            <NewsletterForm />
-          </div>
+            {/* Newsletter */}
+            <div className="mt-12">
+              <NewsletterForm />
+            </div>
 
-          {/* Related */}
-          {related.length > 0 && (
-            <div className="mt-16">
-              <h2 className="text-2xl font-bold text-foreground mb-6">Related Articles</h2>
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
-                {related.map(p => <PostCard key={p.id} post={p} />)}
+            {/* Related */}
+            {related.length > 0 && (
+              <div className="mt-16">
+                <h2 className="text-2xl font-bold text-foreground mb-6">Related Articles</h2>
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+                  {related.map(p => <PostCard key={p.id} post={p} />)}
+                </div>
               </div>
+            )}
+          </div>
+
+          {/* TOC Sidebar - desktop only */}
+          <aside className="hidden xl:block w-64 shrink-0">
+            <div className="pt-[420px]">
+              <TableOfContents headings={headings} />
             </div>
-          )}
+          </aside>
         </div>
       </article>
     </Layout>
