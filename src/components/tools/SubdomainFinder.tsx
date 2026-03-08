@@ -62,7 +62,7 @@ const SubdomainFinder = () => {
               </div>
             ))}
           </div>
-          <p className="text-xs text-muted-foreground">⚠️ Simulated subdomain enumeration. Use tools like subfinder or amass for real results.</p>
+          
         </div>
       )}
     </div>

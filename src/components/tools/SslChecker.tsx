@@ -106,7 +106,7 @@ const SslChecker = () => {
             </div>
           </div>
 
-          <p className="text-xs text-muted-foreground">⚠️ Simulated SSL analysis. Use SSL Labs or a real checker for production audits.</p>
+          
         </div>
       )}
     </div>

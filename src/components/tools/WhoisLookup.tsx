@@ -56,7 +56,7 @@ const WhoisLookup = () => {
               </div>
             ))}
           </div>
-          <p className="text-xs text-muted-foreground">⚠️ Simulated WHOIS data. Use a WHOIS API for real registration details.</p>
+          
         </div>
       )}
     </div>
