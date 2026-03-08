@@ -26,9 +26,9 @@ const PostCard = ({ post }: { post: BlogPost }) => (
           {post.excerpt}
         </p>
         <div className="flex items-center justify-between text-xs text-muted-foreground">
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2" onClick={e => e.preventDefault()}>
             <img src={post.author.avatar} alt={post.author.name} width={20} height={20} className="h-5 w-5 rounded-full" loading="lazy" />
-            <span>{post.author.name}</span>
+            <Link to={`/author/${post.author.name.toLowerCase().replace(/\s+/g, "-")}`} className="hover:text-primary transition-colors">{post.author.name}</Link>
           </div>
           <div className="flex items-center gap-3">
             <span className="flex items-center gap-1"><Clock className="h-3 w-3" />{post.readingTime}m</span>

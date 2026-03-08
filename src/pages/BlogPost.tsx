@@ -147,13 +147,13 @@ const BlogPost = () => {
             <h1 className="text-3xl md:text-4xl font-bold text-foreground leading-tight mb-4">{post.title}</h1>
 
             <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground mb-6">
-              <div className="flex items-center gap-2">
+              <Link to={`/author/${post.author.name.toLowerCase().replace(/\s+/g, "-")}`} className="flex items-center gap-2 hover:opacity-80 transition-opacity">
                 <img src={post.author.avatar} alt={post.author.name} width={32} height={32} className="h-8 w-8 rounded-full" loading="lazy" />
                 <div>
-                  <p className="font-medium text-foreground text-sm">{post.author.name}</p>
+                  <p className="font-medium text-foreground text-sm hover:text-primary transition-colors">{post.author.name}</p>
                   <p className="text-xs">{post.author.role}</p>
                 </div>
-              </div>
+              </Link>
               <span className="flex items-center gap-1"><Calendar className="h-3.5 w-3.5" />{new Date(post.publishedAt).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })}</span>
               <span className="flex items-center gap-1"><Clock className="h-3.5 w-3.5" />{post.readingTime} min read</span>
               <span className="flex items-center gap-1"><Eye className="h-3.5 w-3.5" />{post.viewCount.toLocaleString()} views</span>
