@@ -14,6 +14,13 @@ const About = () => (
         { name: "Home", path: "/" },
         { name: "About", path: "/about" },
       ]}
+      faqJsonLd={[
+        { question: "What is CodeSecAI?", answer: "CodeSecAI is a technical resource providing expert-crafted tutorials, analysis, and free AI-powered tools for developers and security professionals across cybersecurity, AI, cloud computing, blockchain, and software engineering." },
+        { question: "Is CodeSecAI free to use?", answer: "Yes. All articles, tutorials, and AI-powered tools on CodeSecAI are completely free to access and use." },
+        { question: "What topics does CodeSecAI cover?", answer: "CodeSecAI covers cybersecurity, artificial intelligence & machine learning, cloud computing & DevOps, blockchain & Web3, and modern programming & software engineering." },
+        { question: "Who writes the content on CodeSecAI?", answer: "Our content is written by experienced developers and security professionals. Every article undergoes rigorous technical review to ensure accuracy and depth." },
+        { question: "What AI tools does CodeSecAI offer?", answer: "CodeSecAI offers free AI-powered tools for security analysis, code generation, cloud architecture planning, and more — designed to give developers hands-on experience with modern technologies." },
+      ]}
     />
     <section className="hero-gradient">
       <div className="container py-16 text-center">
