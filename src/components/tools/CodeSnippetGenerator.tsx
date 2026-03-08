@@ -1,7 +1,18 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { toast } from "@/hooks/use-toast";
 import { Copy } from "lucide-react";
+import Prism from "prismjs";
+import "prismjs/themes/prism-tomorrow.css";
+import "prismjs/components/prism-typescript";
+import "prismjs/components/prism-jsx";
+import "prismjs/components/prism-tsx";
+import "prismjs/components/prism-python";
+import "prismjs/components/prism-sql";
+import "prismjs/components/prism-bash";
+import "prismjs/components/prism-go";
+import "prismjs/components/prism-rust";
+import "prismjs/components/prism-csharp";
 
 interface Snippet {
   id: string;
@@ -44,6 +55,37 @@ const snippets: Snippet[] = [
 
 const languages = ["All", ...Array.from(new Set(snippets.map(s => s.language)))];
 const patterns = ["All", ...Array.from(new Set(snippets.map(s => s.pattern)))];
+
+const langToPrism: Record<string, string> = {
+  "JavaScript": "javascript",
+  "TypeScript": "typescript",
+  "React/TypeScript": "tsx",
+  "Python": "python",
+  "SQL": "sql",
+  "Bash": "bash",
+  "Go": "go",
+  "Rust": "rust",
+  "C#": "csharp",
+};
+
+const HighlightedCode = ({ code, language }: { code: string; language: string }) => {
+  const codeRef = useRef<HTMLElement>(null);
+  const prismLang = langToPrism[language] || "javascript";
+
+  useEffect(() => {
+    if (codeRef.current) {
+      Prism.highlightElement(codeRef.current);
+    }
+  }, [code, prismLang]);
+
+  return (
+    <pre className="text-xs rounded-lg overflow-auto max-h-72 !bg-[#1d1f21]">
+      <code ref={codeRef} className={`language-${prismLang}`}>
+        {code}
+      </code>
+    </pre>
+  );
+};
 
 const CodeSnippetGenerator = () => {
   const [lang, setLang] = useState("All");
@@ -96,7 +138,9 @@ const CodeSnippetGenerator = () => {
                 <Copy className="h-3.5 w-3.5 mr-1" /> Copy
               </Button>
             </div>
-            <pre className="text-xs font-mono bg-muted mx-4 mb-3 rounded-lg p-4 overflow-auto max-h-72 whitespace-pre-wrap text-muted-foreground">{s.code}</pre>
+            <div className="mx-4 mb-3 rounded-lg overflow-hidden">
+              <HighlightedCode code={s.code} language={s.language} />
+            </div>
             <div className="px-4 pb-4">
               <p className="text-sm text-muted-foreground">{s.explanation}</p>
             </div>
