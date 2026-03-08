@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import Layout from "@/components/layout/Layout";
+import SEO from "@/components/SEO";
 import { tools } from "@/data/tools";
 import { toast } from "@/hooks/use-toast";
 
@@ -120,6 +121,7 @@ const ToolPage = () => {
 
   return (
     <Layout>
+      <SEO title={tool.name} description={tool.description} canonical={`/tools/${tool.slug}`} />
       <div className="container py-12 max-w-3xl mx-auto">
         <Link to="/tools" className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-primary mb-6">
           <ArrowLeft className="h-4 w-4" /> Back to Tools
