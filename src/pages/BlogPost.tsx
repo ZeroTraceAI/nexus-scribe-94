@@ -90,7 +90,19 @@ const BlogPost = () => {
 
   return (
     <Layout>
-      {/* Breadcrumb */}
+      <SEO
+        title={post.title}
+        description={post.excerpt}
+        canonical={`/blog/${post.slug}`}
+        ogType="article"
+        ogImage={post.featuredImage}
+        article={{
+          publishedTime: post.publishedAt,
+          author: post.author.name,
+          section: post.categoryName,
+          tags: post.tags,
+        }}
+      />
       <div className="container py-4">
         <nav className="flex items-center gap-2 text-sm text-muted-foreground">
           <Link to="/" className="hover:text-primary">Home</Link>

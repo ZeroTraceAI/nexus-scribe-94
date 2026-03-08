@@ -35,6 +35,7 @@ const Blog = () => {
 
   return (
     <Layout>
+      <SEO title="Blog" description="Expert articles on cybersecurity, AI, cloud computing, blockchain, and programming." canonical="/blog" />
       <div className="container py-12">
         <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-2">Blog</h1>
         <p className="text-muted-foreground mb-8">Expert articles on cybersecurity, AI, cloud, blockchain, and programming.</p>
