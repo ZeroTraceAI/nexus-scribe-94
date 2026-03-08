@@ -1,4 +1,5 @@
 import { blogImages } from "@/assets/blog";
+import { cybersecurityPosts } from "./cybersecurity-posts";
 
 export interface BlogPost {
   id: string;
