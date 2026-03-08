@@ -8,10 +8,13 @@ import NewsletterForm from "@/components/shared/NewsletterForm";
 import { posts } from "@/data/posts";
 import { categories } from "@/data/categories";
 
+const POSTS_PER_PAGE = 9;
+
 const Blog = () => {
   const [search, setSearch] = useState("");
   const [categoryFilter, setCategoryFilter] = useState<string | null>(null);
   const [sort, setSort] = useState<"latest" | "popular">("latest");
+  const [currentPage, setCurrentPage] = useState(1);
 
   const filtered = useMemo(() => {
     let result = [...posts];
