@@ -162,7 +162,7 @@ SQL injection is a solved problem from a technical standpoint — parameterized 
     viewCount: 4520,
     commentCount: 23,
     featured: true,
-    featuredImage: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=800&q=80",
+    featuredImage: "https://picsum.photos/seed/sql-injection/800/450",
   },
   {
     id: "2",
@@ -372,7 +372,7 @@ Building a production RAG system is an iterative process. Start with a simple pi
     viewCount: 6230,
     commentCount: 41,
     featured: true,
-    featuredImage: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&q=80",
+    featuredImage: "https://picsum.photos/seed/rag-langchain/800/450",
   },
   {
     id: "3",
@@ -571,7 +571,7 @@ Kubernetes cost optimization is a continuous process of measurement, right-sizin
     viewCount: 3890,
     commentCount: 18,
     featured: false,
-    featuredImage: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&q=80",
+    featuredImage: "https://picsum.photos/seed/kubernetes-security/800/450",
   },
   {
     id: "4",
@@ -777,7 +777,7 @@ Smart contract security is a continuous practice, not a one-time audit. Build se
     viewCount: 2740,
     commentCount: 12,
     featured: true,
-    featuredImage: "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=800&q=80",
+    featuredImage: "https://picsum.photos/seed/smart-contract/800/450",
   },
   {
     id: "5",
@@ -946,7 +946,7 @@ There's no universal winner. Rust and Go solve different problems with different
     viewCount: 8120,
     commentCount: 56,
     featured: false,
-    featuredImage: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&q=80",
+    featuredImage: "https://picsum.photos/seed/rust-systems/800/450",
   },
   {
     id: "6",
@@ -1117,7 +1117,7 @@ Zero Trust is not a product you can buy — it's a strategy you implement increm
     viewCount: 3210,
     commentCount: 15,
     featured: false,
-    featuredImage: "https://images.unsplash.com/photo-1563986768494-4dee2763ff3f?w=800&q=80",
+    featuredImage: "https://picsum.photos/seed/xss-attacks/800/450",
   },
   {
     id: "7",
@@ -1340,7 +1340,7 @@ Fine-tuning is a powerful tool for specializing LLMs, but it requires careful da
     viewCount: 5430,
     commentCount: 29,
     featured: false,
-    featuredImage: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=800&q=80",
+    featuredImage: "https://picsum.photos/seed/gpt-fine-tuning/800/450",
   },
   {
     id: "8",
@@ -1560,7 +1560,7 @@ Terraform at scale requires disciplined practices around module design, state ma
     viewCount: 2980,
     commentCount: 11,
     featured: false,
-    featuredImage: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&q=80",
+    featuredImage: "https://picsum.photos/seed/aws-serverless/800/450",
   },
   {
     id: "9",
@@ -1789,7 +1789,7 @@ AMMs are a fundamental innovation in decentralized finance, enabling permissionl
     viewCount: 1890,
     commentCount: 8,
     featured: false,
-    featuredImage: "https://images.unsplash.com/photo-1642104704074-907c0698cbd9?w=800&q=80",
+    featuredImage: "https://picsum.photos/seed/defi-protocols/800/450",
   },
   {
     id: "10",
@@ -2097,7 +2097,7 @@ Design patterns in TypeScript are more than organizational tools — they're con
     viewCount: 7650,
     commentCount: 34,
     featured: true,
-    featuredImage: "https://images.unsplash.com/photo-1516116216624-53e697fedbea?w=800&q=80",
+    featuredImage: "https://picsum.photos/seed/typescript-patterns/800/450",
   },
   {
     id: "11",
@@ -2308,7 +2308,7 @@ The OWASP Top 10 is not a checklist to complete — it's a framework for thinkin
     viewCount: 5670,
     commentCount: 31,
     featured: false,
-    featuredImage: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=800&q=80",
+    featuredImage: "https://picsum.photos/seed/zero-trust/800/450",
   },
   {
     id: "12",
@@ -2556,7 +2556,7 @@ Incident response is a muscle that strengthens with exercise. Run tabletop exerc
     viewCount: 3420,
     commentCount: 19,
     featured: false,
-    featuredImage: "https://images.unsplash.com/photo-1504639725590-34d0984388bd?w=800&q=80",
+    featuredImage: "https://picsum.photos/seed/ml-pytorch/800/450",
   },
   {
     id: "13",
@@ -2892,7 +2892,7 @@ Production prompt engineering requires the same rigor as production software eng
     viewCount: 8940,
     commentCount: 47,
     featured: true,
-    featuredImage: "https://images.unsplash.com/photo-1655720828018-edd2daec9349?w=800&q=80",
+    featuredImage: "https://picsum.photos/seed/terraform-iac/800/450",
   },
   {
     id: "14",
@@ -3221,7 +3221,7 @@ Production computer vision requires engineering discipline far beyond model trai
     viewCount: 4150,
     commentCount: 22,
     featured: false,
-    featuredImage: "https://images.unsplash.com/photo-1561736778-92e52a7769ef?w=800&q=80",
+    featuredImage: "https://picsum.photos/seed/web3-dapps/800/450",
   },
   {
     id: "15",
@@ -3516,7 +3516,7 @@ Serverless at scale requires thinking in events, not servers. Embrace asynchrono
     viewCount: 4280,
     commentCount: 25,
     featured: false,
-    featuredImage: "https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=800&q=80",
+    featuredImage: "https://picsum.photos/seed/networking-security/800/450",
   },
   {
     id: "16",
@@ -3843,7 +3843,7 @@ Production Docker is about discipline: small images (multi-stage builds), securi
     viewCount: 5120,
     commentCount: 28,
     featured: false,
-    featuredImage: "https://images.unsplash.com/photo-1605745341112-85968b19335b?w=800&q=80",
+    featuredImage: "https://picsum.photos/seed/api-gateway/800/450",
   },
   {
     id: "17",
@@ -4164,7 +4164,7 @@ Web3 authentication is evolving rapidly. SIWE provides a solid standard for wall
     viewCount: 3670,
     commentCount: 21,
     featured: false,
-    featuredImage: "https://images.unsplash.com/photo-1622630998477-20aa696ecb05?w=800&q=80",
+    featuredImage: "https://picsum.photos/seed/crypto-wallets/800/450",
   },
   {
     id: "18",
@@ -4417,7 +4417,7 @@ Layer 2 scaling has transformed Ethereum from a slow, expensive network into a p
     viewCount: 4890,
     commentCount: 33,
     featured: false,
-    featuredImage: "https://images.unsplash.com/photo-1644143379190-08a5f055de1d?w=800&q=80",
+    featuredImage: "https://picsum.photos/seed/nft-security/800/450",
   },
   {
     id: "19",
@@ -4784,7 +4784,7 @@ System design is fundamentally about trade-offs. There's no single correct answe
     viewCount: 12340,
     commentCount: 67,
     featured: true,
-    featuredImage: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&q=80",
+    featuredImage: "https://picsum.photos/seed/webassembly/800/450",
   },
   {
     id: "20",
@@ -5187,7 +5187,7 @@ Modern Python is a strongly-typed, async-capable, well-tooled language that riva
     viewCount: 9870,
     commentCount: 52,
     featured: false,
-    featuredImage: "https://images.unsplash.com/photo-1526379095098-d400fd0bf935?w=800&q=80",
+    featuredImage: "https://picsum.photos/seed/graphql-security/800/450",
   },
   {
     id: "21",
@@ -5320,7 +5320,7 @@ Zero-day exploits will always exist, but their impact can be minimized through d
     viewCount: 8920,
     commentCount: 41,
     featured: true,
-    featuredImage: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=800&q=80",
+    featuredImage: "https://picsum.photos/seed/cicd-pipeline/800/450",
   },
   {
     id: "22",
@@ -5475,7 +5475,7 @@ API security is not optional — it's the front door to your application's data.
     viewCount: 6340,
     commentCount: 29,
     featured: false,
-    featuredImage: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&q=80",
+    featuredImage: "https://picsum.photos/seed/edge-computing/800/450",
   },
   {
     id: "23",
@@ -5659,7 +5659,7 @@ AI agents in 2026 are powerful but require careful engineering. Focus on clear t
     viewCount: 11200,
     commentCount: 67,
     featured: true,
-    featuredImage: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&q=80",
+    featuredImage: "https://picsum.photos/seed/llm-agents/800/450",
   },
   {
     id: "24",
@@ -5808,7 +5808,7 @@ AI security is a rapidly evolving field. The attacks of 2026 exploit fundamental
     viewCount: 7650,
     commentCount: 38,
     featured: false,
-    featuredImage: "https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=800&q=80",
+    featuredImage: "https://picsum.photos/seed/go-concurrency/800/450",
   },
   {
     id: "25",
@@ -5979,7 +5979,7 @@ Platform engineering is not about building a perfect platform — it's about con
     viewCount: 5430,
     commentCount: 31,
     featured: false,
-    featuredImage: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&q=80",
+    featuredImage: "https://picsum.photos/seed/cloud-native/800/450",
   },
   {
     id: "26",
@@ -6153,7 +6153,7 @@ FinOps is not a one-time project — it's a continuous practice. Start with visi
     viewCount: 7120,
     commentCount: 44,
     featured: false,
-    featuredImage: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80",
+    featuredImage: "https://picsum.photos/seed/data-analytics/800/450",
   },
   {
     id: "27",
@@ -6294,7 +6294,7 @@ DeFi security requires a fundamentally different mindset from traditional applic
     viewCount: 6890,
     commentCount: 35,
     featured: false,
-    featuredImage: "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=800&q=80",
+    featuredImage: "https://picsum.photos/seed/blockchain-dao/800/450",
   },
   {
     id: "28",
@@ -6468,7 +6468,7 @@ Account abstraction is making crypto usable by normal people. In 2026, the best 
     viewCount: 5670,
     commentCount: 28,
     featured: false,
-    featuredImage: "https://images.unsplash.com/photo-1622630998477-20aa696ecb05?w=800&q=80",
+    featuredImage: "https://picsum.photos/seed/privacy-gdpr/800/450",
   },
   {
     id: "29",
@@ -6687,7 +6687,7 @@ Rust backend development in 2026 is productive, performant, and reliable. Axum p
     viewCount: 8430,
     commentCount: 46,
     featured: true,
-    featuredImage: "https://images.unsplash.com/photo-1515879218367-8466d910auj7?w=800&q=80",
+    featuredImage: "https://picsum.photos/seed/devops-monitoring/800/450",
   },
   {
     id: "30",
@@ -6874,7 +6874,7 @@ WebAssembly beyond the browser is not hype — it's production reality in 2026. 
     viewCount: 4920,
     commentCount: 22,
     featured: false,
-    featuredImage: "https://images.unsplash.com/photo-1518432031352-d6fc5c10da5a?w=800&q=80",
+    featuredImage: "https://picsum.photos/seed/terminal-linux/800/450",
   },
 ];
 
