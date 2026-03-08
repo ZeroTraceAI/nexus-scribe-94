@@ -17,6 +17,8 @@ export interface BlogPost {
   featuredImage: string;
 }
 
+const AUTHOR = { name: "ShadowGod", avatar: "https://api.dicebear.com/9.x/avataaars/svg?seed=ShadowGod", role: "Founder & Security Researcher" };
+
 export const posts: BlogPost[] = [
   {
     id: "1",
