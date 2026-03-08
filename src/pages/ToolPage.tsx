@@ -81,6 +81,12 @@ import AiSaasAutomation from "@/components/tools/AiSaasAutomation";
 import AiResearchAssistant from "@/components/tools/AiResearchAssistant";
 import AiDevCopilot from "@/components/tools/AiDevCopilot";
 import ViralTopicGenerator from "@/components/tools/ViralTopicGenerator";
+import AiResearchSummarizer from "@/components/tools/AiResearchSummarizer";
+import AiSaasIdeaGenerator from "@/components/tools/AiSaasIdeaGenerator";
+import AiStartupIdeaGenerator from "@/components/tools/AiStartupIdeaGenerator";
+import AiCodeSecurityScanner from "@/components/tools/AiCodeSecurityScanner";
+import AiModelComparison from "@/components/tools/AiModelComparison";
+import AiWorkflowBuilder from "@/components/tools/AiWorkflowBuilder";
 
 const RegexTester = () => {
   const [pattern, setPattern] = useState("");
@@ -252,6 +258,12 @@ const toolComponentMap: Record<string, React.ComponentType> = {
   "ai-research-assistant": AiResearchAssistant,
   "ai-dev-copilot": AiDevCopilot,
   "viral-topic-generator": ViralTopicGenerator,
+  "ai-research-summarizer": AiResearchSummarizer,
+  "ai-saas-idea-generator": AiSaasIdeaGenerator,
+  "ai-startup-idea-generator": AiStartupIdeaGenerator,
+  "ai-code-security-scanner": AiCodeSecurityScanner,
+  "ai-model-comparison": AiModelComparison,
+  "ai-workflow-builder": AiWorkflowBuilder,
 };
 
 const ToolPage = () => {
