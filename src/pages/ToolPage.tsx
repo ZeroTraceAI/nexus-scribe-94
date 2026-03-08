@@ -290,6 +290,25 @@ const ToolPage = () => {
       case "content-seo-analyzer": return <ContentSeoAnalyzer />;
       case "cyber-risk-scanner": return <CyberRiskScanner />;
       case "saas-revenue-calculator": return <SaasRevenueCalculator />;
+      case "meta-description-generator": return <MetaDescriptionGenerator />;
+      case "blog-outline-generator": return <BlogOutlineGenerator />;
+      case "keyword-difficulty-checker": return <KeywordDifficultyChecker />;
+      case "backlink-finder": return <BacklinkOpportunityFinder />;
+      case "serp-snippet-preview": return <SerpSnippetPreview />;
+      case "faq-generator": return <FaqGenerator />;
+      case "internal-linking-tool": return <InternalLinkingSuggester />;
+      case "content-gap-analyzer": return <ContentGapAnalyzer />;
+      case "readability-analyzer": return <ReadabilityAnalyzer />;
+      case "keyword-intent-classifier": return <KeywordIntentClassifier />;
+      case "content-rewriter": return <ContentRewriter />;
+      case "schema-markup-generator": return <SchemaMarkupGenerator />;
+      case "robots-txt-generator": return <RobotsTxtGenerator />;
+      case "sitemap-generator": return <SitemapGeneratorTool />;
+      case "website-speed-analyzer": return <WebsiteSpeedAnalyzer />;
+      case "js-minifier": return <JsMinifierFormatter />;
+      case "json-formatter": return <JsonFormatter />;
+      case "markdown-to-html": return <MarkdownToHtml />;
+      case "code-beautifier": return <CodeBeautifier />;
       default: return null;
     }
   };
