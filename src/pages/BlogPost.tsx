@@ -148,7 +148,7 @@ const BlogPost = () => {
 
             <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground mb-6">
               <div className="flex items-center gap-2">
-                <img src={post.author.avatar} alt={post.author.name} className="h-8 w-8 rounded-full" />
+                <img src={post.author.avatar} alt={post.author.name} className="h-8 w-8 rounded-full" loading="lazy" />
                 <div>
                   <p className="font-medium text-foreground text-sm">{post.author.name}</p>
                   <p className="text-xs">{post.author.role}</p>
@@ -159,7 +159,7 @@ const BlogPost = () => {
               <span className="flex items-center gap-1"><Eye className="h-3.5 w-3.5" />{post.viewCount.toLocaleString()} views</span>
             </div>
 
-            <img src={post.featuredImage} alt={post.title} className="w-full rounded-lg mb-8 aspect-video object-cover" />
+            <img src={post.featuredImage} alt={post.title} className="w-full rounded-lg mb-8 aspect-video object-cover" loading="lazy" />
 
             <div className="prose-custom">
               {contentWithCode}
