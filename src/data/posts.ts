@@ -5189,7 +5189,7 @@ Modern Python is a strongly-typed, async-capable, well-tooled language that riva
     viewCount: 9870,
     commentCount: 52,
     featured: false,
-    featuredImage: "https://picsum.photos/seed/graphql-security/800/450",
+    featuredImage: blogImages["graphql-security"],
   },
   {
     id: "21",
@@ -5322,7 +5322,7 @@ Zero-day exploits will always exist, but their impact can be minimized through d
     viewCount: 8920,
     commentCount: 41,
     featured: true,
-    featuredImage: "https://picsum.photos/seed/cicd-pipeline/800/450",
+    featuredImage: blogImages["cicd-pipeline"],
   },
   {
     id: "22",
@@ -5477,7 +5477,7 @@ API security is not optional — it's the front door to your application's data.
     viewCount: 6340,
     commentCount: 29,
     featured: false,
-    featuredImage: "https://picsum.photos/seed/edge-computing/800/450",
+    featuredImage: blogImages["edge-computing"],
   },
   {
     id: "23",
@@ -5661,7 +5661,7 @@ AI agents in 2026 are powerful but require careful engineering. Focus on clear t
     viewCount: 11200,
     commentCount: 67,
     featured: true,
-    featuredImage: "https://picsum.photos/seed/llm-agents/800/450",
+    featuredImage: blogImages["llm-agents"],
   },
   {
     id: "24",
@@ -5810,7 +5810,7 @@ AI security is a rapidly evolving field. The attacks of 2026 exploit fundamental
     viewCount: 7650,
     commentCount: 38,
     featured: false,
-    featuredImage: "https://picsum.photos/seed/go-concurrency/800/450",
+    featuredImage: blogImages["go-concurrency"],
   },
   {
     id: "25",
@@ -5981,7 +5981,7 @@ Platform engineering is not about building a perfect platform — it's about con
     viewCount: 5430,
     commentCount: 31,
     featured: false,
-    featuredImage: "https://picsum.photos/seed/cloud-native/800/450",
+    featuredImage: blogImages["cloud-native"],
   },
   {
     id: "26",
@@ -6155,7 +6155,7 @@ FinOps is not a one-time project — it's a continuous practice. Start with visi
     viewCount: 7120,
     commentCount: 44,
     featured: false,
-    featuredImage: "https://picsum.photos/seed/data-analytics/800/450",
+    featuredImage: blogImages["data-analytics"],
   },
   {
     id: "27",
@@ -6296,7 +6296,7 @@ DeFi security requires a fundamentally different mindset from traditional applic
     viewCount: 6890,
     commentCount: 35,
     featured: false,
-    featuredImage: "https://picsum.photos/seed/blockchain-dao/800/450",
+    featuredImage: blogImages["blockchain-dao"],
   },
   {
     id: "28",
@@ -6470,7 +6470,7 @@ Account abstraction is making crypto usable by normal people. In 2026, the best 
     viewCount: 5670,
     commentCount: 28,
     featured: false,
-    featuredImage: "https://picsum.photos/seed/privacy-gdpr/800/450",
+    featuredImage: blogImages["privacy-gdpr"],
   },
   {
     id: "29",
@@ -6689,7 +6689,7 @@ Rust backend development in 2026 is productive, performant, and reliable. Axum p
     viewCount: 8430,
     commentCount: 46,
     featured: true,
-    featuredImage: "https://picsum.photos/seed/devops-monitoring/800/450",
+    featuredImage: blogImages["devops-monitoring"],
   },
   {
     id: "30",
@@ -6876,7 +6876,7 @@ WebAssembly beyond the browser is not hype — it's production reality in 2026. 
     viewCount: 4920,
     commentCount: 22,
     featured: false,
-    featuredImage: "https://picsum.photos/seed/terminal-linux/800/450",
+    featuredImage: blogImages["terminal-linux"],
   },
 ];
 
