@@ -13,6 +13,10 @@ const Tools = () => {
         title="Free AI-Powered Developer Tools"
         description="Code generators, vulnerability explainers, SEO analyzers, regex testers, and more — all free, no signup required."
         canonical="/tools"
+        breadcrumbs={[
+          { name: "Home", path: "/" },
+          { name: "Tools", path: "/tools" },
+        ]}
       />
       <section className="hero-gradient">
         <div className="container py-16 text-center">
