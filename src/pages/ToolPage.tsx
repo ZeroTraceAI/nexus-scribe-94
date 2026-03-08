@@ -1,9 +1,10 @@
 import { useState } from "react";
 import { useParams, Link } from "react-router-dom";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, Download, Share2, Info, CheckCircle2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { Badge } from "@/components/ui/badge";
 import Layout from "@/components/layout/Layout";
 import SEO from "@/components/SEO";
 import { tools } from "@/data/tools";
@@ -34,22 +35,76 @@ const RegexTester = () => {
     error = e.message;
   }
 
+  // Highlight matches in test string
+  const getHighlightedText = () => {
+    if (!pattern || !testStr || error || matches.length === 0) return null;
+    try {
+      const re = new RegExp(pattern, flags);
+      const parts = testStr.split(re);
+      const matched = testStr.match(re) || [];
+      const result: JSX.Element[] = [];
+      parts.forEach((part, i) => {
+        result.push(<span key={`p${i}`}>{part}</span>);
+        if (i < matched.length) {
+          result.push(<mark key={`m${i}`} className="bg-primary/30 text-primary font-semibold rounded px-0.5">{matched[i]}</mark>);
+        }
+      });
+      return result;
+    } catch {
+      return null;
+    }
+  };
+
+  const commonPatterns = [
+    { label: "Email", pattern: "[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}" },
+    { label: "URL", pattern: "https?://[\\w\\-._~:/?#\\[\\]@!$&'()*+,;=]+" },
+    { label: "IPv4", pattern: "\\b(?:\\d{1,3}\\.){3}\\d{1,3}\\b" },
+    { label: "Phone", pattern: "\\+?[1-9]\\d{1,14}" },
+  ];
+
   return (
     <div className="space-y-4">
+      <div className="flex flex-wrap gap-2 mb-2">
+        <span className="text-xs text-muted-foreground mr-1 self-center">Quick patterns:</span>
+        {commonPatterns.map(p => (
+          <button key={p.label} onClick={() => setPattern(p.pattern)} className="text-xs px-2 py-1 rounded-full border border-border text-muted-foreground hover:bg-primary/10 hover:text-primary hover:border-primary/30 transition-colors">
+            {p.label}
+          </button>
+        ))}
+      </div>
       <div className="flex gap-2">
         <Input placeholder="Enter regex pattern..." value={pattern} onChange={e => setPattern(e.target.value)} className="font-mono" />
         <Input placeholder="Flags" value={flags} onChange={e => setFlags(e.target.value)} className="w-20 font-mono" />
       </div>
       {error && <p className="text-sm text-destructive">{error}</p>}
       <Textarea placeholder="Enter test string..." value={testStr} onChange={e => setTestStr(e.target.value)} rows={5} className="font-mono" />
+
+      {/* Highlighted preview */}
+      {getHighlightedText() && (
+        <div className="bg-muted/50 rounded-lg p-4 border">
+          <p className="text-xs font-semibold text-muted-foreground mb-2 uppercase tracking-wider">Live Preview</p>
+          <div className="text-sm font-mono whitespace-pre-wrap break-all">{getHighlightedText()}</div>
+        </div>
+      )}
+
       {matches.length > 0 && (
         <div className="bg-muted rounded-lg p-4">
-          <p className="text-sm font-medium text-foreground mb-2">{matches.length} match{matches.length !== 1 ? "es" : ""} found:</p>
-          {matches.map((m, i) => (
-            <div key={i} className="text-sm font-mono text-primary bg-primary/10 inline-block rounded px-2 py-0.5 mr-2 mb-1">
-              "{m[0]}" <span className="text-muted-foreground">at index {m.index}</span>
-            </div>
-          ))}
+          <div className="flex items-center justify-between mb-2">
+            <p className="text-sm font-medium text-foreground">{matches.length} match{matches.length !== 1 ? "es" : ""} found</p>
+            <Button variant="outline" size="sm" onClick={() => {
+              navigator.clipboard.writeText(matches.map(m => m[0]).join("\n"));
+              toast({ title: "Matches copied!" });
+            }}>
+              Export matches
+            </Button>
+          </div>
+          <div className="flex flex-wrap gap-1.5">
+            {matches.map((m, i) => (
+              <span key={i} className="text-sm font-mono text-primary bg-primary/10 rounded px-2 py-0.5">
+                "{m[0]}" <span className="text-muted-foreground text-xs">@{m.index}</span>
+              </span>
+            ))}
+          </div>
         </div>
       )}
       {pattern && testStr && matches.length === 0 && !error && <p className="text-sm text-muted-foreground">No matches found.</p>}
@@ -70,31 +125,98 @@ const PasswordChecker = () => {
     return score;
   };
 
+  const getCrackTime = (pw: string) => {
+    const charsetSize =
+      (/[a-z]/.test(pw) ? 26 : 0) +
+      (/[A-Z]/.test(pw) ? 26 : 0) +
+      (/\d/.test(pw) ? 10 : 0) +
+      (/[^a-zA-Z0-9]/.test(pw) ? 33 : 0);
+    if (!charsetSize || !pw.length) return "Instant";
+    const combinations = Math.pow(charsetSize, pw.length);
+    const guessesPerSecond = 10_000_000_000; // 10B guesses/sec (modern GPU)
+    const seconds = combinations / guessesPerSecond;
+    if (seconds < 1) return "< 1 second";
+    if (seconds < 60) return `${Math.round(seconds)} seconds`;
+    if (seconds < 3600) return `${Math.round(seconds / 60)} minutes`;
+    if (seconds < 86400) return `${Math.round(seconds / 3600)} hours`;
+    if (seconds < 31536000) return `${Math.round(seconds / 86400)} days`;
+    if (seconds < 31536000 * 1000) return `${Math.round(seconds / 31536000)} years`;
+    if (seconds < 31536000 * 1000000) return `${Math.round(seconds / 31536000 / 1000)}K years`;
+    return `${(seconds / 31536000 / 1000000).toFixed(0)}M+ years`;
+  };
+
   const strength = getStrength(password);
   const labels = ["Very Weak", "Weak", "Fair", "Strong", "Very Strong"];
   const colors = ["bg-destructive", "bg-destructive/70", "bg-yellow-500", "bg-secondary", "bg-secondary"];
+  const entropy = password.length > 0 ? (Math.log2(
+    Math.pow(
+      (/[a-z]/.test(password) ? 26 : 0) +
+      (/[A-Z]/.test(password) ? 26 : 0) +
+      (/\d/.test(password) ? 10 : 0) +
+      (/[^a-zA-Z0-9]/.test(password) ? 33 : 0) || 1,
+      password.length
+    )
+  )).toFixed(1) : "0";
+
+  const generatePassword = () => {
+    const chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+-=";
+    let pw = "";
+    const arr = new Uint32Array(16);
+    crypto.getRandomValues(arr);
+    for (let i = 0; i < 16; i++) pw += chars[arr[i] % chars.length];
+    setPassword(pw);
+  };
 
   return (
     <div className="space-y-4">
-      <Input type="text" placeholder="Enter password to check..." value={password} onChange={e => setPassword(e.target.value)} className="font-mono" />
+      <div className="flex gap-2">
+        <Input type="text" placeholder="Enter password to check..." value={password} onChange={e => setPassword(e.target.value)} className="font-mono" />
+        <Button variant="outline" size="sm" onClick={generatePassword} className="shrink-0">Generate</Button>
+      </div>
       {password && (
-        <div className="space-y-3">
+        <div className="space-y-4">
           <div className="flex gap-1">
             {Array.from({ length: 5 }).map((_, i) => (
-              <div key={i} className={`h-2 flex-1 rounded-full ${i < strength ? colors[strength - 1] : "bg-muted"}`} />
+              <div key={i} className={`h-2.5 flex-1 rounded-full transition-all ${i < strength ? colors[strength - 1] : "bg-muted"}`} />
             ))}
           </div>
-          <p className="text-sm font-medium text-foreground">{labels[strength - 1] || "Too Short"}</p>
-          <ul className="text-sm text-muted-foreground space-y-1">
-            <li>{password.length >= 8 ? "✅" : "❌"} At least 8 characters</li>
-            <li>{password.length >= 12 ? "✅" : "❌"} At least 12 characters</li>
-            <li>{/[a-z]/.test(password) && /[A-Z]/.test(password) ? "✅" : "❌"} Mixed case letters</li>
-            <li>{/\d/.test(password) ? "✅" : "❌"} Contains numbers</li>
-            <li>{/[^a-zA-Z0-9]/.test(password) ? "✅" : "❌"} Contains special characters</li>
+          <div className="flex items-center justify-between">
+            <p className="text-sm font-bold text-foreground">{labels[strength - 1] || "Too Short"}</p>
+            <Badge variant={strength >= 4 ? "default" : strength >= 3 ? "secondary" : "destructive"}>
+              {getCrackTime(password)} to crack
+            </Badge>
+          </div>
+
+          <div className="grid grid-cols-2 gap-3 text-sm">
+            <div className="bg-muted/50 rounded-lg p-3 border">
+              <span className="text-xs text-muted-foreground">Length</span>
+              <p className="font-bold text-foreground">{password.length} characters</p>
+            </div>
+            <div className="bg-muted/50 rounded-lg p-3 border">
+              <span className="text-xs text-muted-foreground">Entropy</span>
+              <p className="font-bold text-foreground">{entropy} bits</p>
+            </div>
+          </div>
+
+          <ul className="text-sm space-y-1.5">
+            {[
+              [password.length >= 8, "At least 8 characters"],
+              [password.length >= 12, "At least 12 characters (recommended)"],
+              [/[a-z]/.test(password) && /[A-Z]/.test(password), "Mixed case letters"],
+              [/\d/.test(password), "Contains numbers"],
+              [/[^a-zA-Z0-9]/.test(password), "Contains special characters"],
+            ].map(([pass, label], i) => (
+              <li key={i} className={`flex items-center gap-2 ${pass ? "text-secondary" : "text-muted-foreground"}`}>
+                {pass ? <CheckCircle2 className="h-4 w-4" /> : <span className="h-4 w-4 rounded-full border-2 border-muted-foreground/30 inline-block" />}
+                {label as string}
+              </li>
+            ))}
           </ul>
         </div>
       )}
-      <p className="text-xs text-muted-foreground">🔒 This check runs entirely in your browser. No data is sent anywhere.</p>
+      <p className="text-xs text-muted-foreground flex items-center gap-1">
+        <Info className="h-3 w-3" /> This check runs entirely in your browser. No data is sent anywhere.
+      </p>
     </div>
   );
 };
@@ -113,6 +235,11 @@ const ToolPage = () => {
       </Layout>
     );
   }
+
+  const handleShare = () => {
+    navigator.clipboard.writeText(window.location.href);
+    toast({ title: "Link copied!" });
+  };
 
   const renderTool = () => {
     switch (tool.slug) {
@@ -152,12 +279,42 @@ const ToolPage = () => {
         <Link to="/tools" className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-primary mb-6">
           <ArrowLeft className="h-4 w-4" /> Back to Tools
         </Link>
-        <div className="flex items-center gap-3 mb-2">
-          <span className="text-3xl">{tool.icon}</span>
-          <h1 className="text-2xl md:text-3xl font-bold text-foreground">{tool.name}</h1>
+        <div className="flex items-start justify-between mb-2">
+          <div className="flex items-center gap-3">
+            <span className="text-3xl">{tool.icon}</span>
+            <div>
+              <h1 className="text-2xl md:text-3xl font-bold text-foreground">{tool.name}</h1>
+              <div className="flex items-center gap-2 mt-1">
+                <Badge variant="secondary" className="text-xs">{tool.category}</Badge>
+                {tool.isClientOnly && <Badge variant="outline" className="text-xs text-secondary border-secondary/30">🔒 Client-side only</Badge>}
+              </div>
+            </div>
+          </div>
+          <Button variant="ghost" size="icon" onClick={handleShare} className="text-muted-foreground hover:text-foreground">
+            <Share2 className="h-4 w-4" />
+          </Button>
         </div>
         <p className="text-muted-foreground mb-8">{tool.description}</p>
-        {renderTool()}
+
+        <div className="bg-card border rounded-xl p-6">
+          {renderTool()}
+        </div>
+
+        {/* Related tools */}
+        <div className="mt-12">
+          <h2 className="text-lg font-bold text-foreground mb-4">More Tools</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            {tools.filter(t => t.id !== tool.id).slice(0, 4).map(t => (
+              <Link key={t.id} to={`/tools/${t.slug}`} className="flex items-center gap-3 p-3 bg-card border rounded-lg hover:border-primary/30 transition-all group">
+                <span className="text-xl">{t.icon}</span>
+                <div>
+                  <h3 className="text-sm font-medium text-foreground group-hover:text-primary transition-colors">{t.name}</h3>
+                  <p className="text-xs text-muted-foreground">{t.category}</p>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </div>
       </div>
     </Layout>
   );

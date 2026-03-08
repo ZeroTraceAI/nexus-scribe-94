@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { ArrowRight, Sparkles } from "lucide-react";
+import { ArrowRight, Sparkles, BookOpen, Wrench, Users, TrendingUp, Eye, Clock } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Layout from "@/components/layout/Layout";
 import PostCard from "@/components/blog/PostCard";
@@ -8,11 +8,30 @@ import NewsletterForm from "@/components/shared/NewsletterForm";
 import SEO from "@/components/SEO";
 import { posts, getFeaturedPosts, getPopularPosts } from "@/data/posts";
 import { categories, getCategoryIcon } from "@/data/categories";
+import { tools } from "@/data/tools";
 
 const Index = () => {
   const featured = getFeaturedPosts();
   const popular = getPopularPosts();
   const latest = [...posts].sort((a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime()).slice(0, 6);
+
+  // Stats
+  const totalArticles = posts.length;
+  const totalViews = posts.reduce((sum, p) => sum + p.viewCount, 0);
+  const totalReadingTime = posts.reduce((sum, p) => sum + p.readingTime, 0);
+  const totalTools = tools.length;
+
+  // Trending tags
+  const tagCounts: Record<string, number> = {};
+  posts.forEach(p => p.tags.forEach(t => { tagCounts[t] = (tagCounts[t] || 0) + 1; }));
+  const trendingTags = Object.entries(tagCounts).sort((a, b) => b[1] - a[1]).slice(0, 12).map(([tag]) => tag);
+
+  const stats = [
+    { icon: BookOpen, label: "Articles Published", value: totalArticles, suffix: "+" },
+    { icon: Eye, label: "Total Reads", value: `${(totalViews / 1000).toFixed(0)}k`, suffix: "+" },
+    { icon: Clock, label: "Hours of Content", value: Math.round(totalReadingTime / 60), suffix: "+" },
+    { icon: Wrench, label: "Free AI Tools", value: totalTools, suffix: "" },
+  ];
 
   return (
     <Layout>
@@ -29,6 +48,7 @@ const Index = () => {
           { question: "What topics does CodeSecAI cover?", answer: "CodeSecAI covers cybersecurity (penetration testing, secure coding, vulnerability analysis), artificial intelligence (machine learning, LLMs, RAG systems), cloud computing (AWS, Kubernetes, DevOps), blockchain (smart contracts, Web3), and modern programming (Rust, Go, TypeScript)." },
         ]}
       />
+
       {/* Hero */}
       <section className="hero-gradient relative overflow-hidden">
         <div className="container py-20 md:py-28 text-center relative z-10">
@@ -56,6 +76,27 @@ const Index = () => {
               </Link>
             </div>
           </motion.div>
+        </div>
+      </section>
+
+      {/* Live Stats */}
+      <section className="container -mt-10 relative z-20">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          {stats.map((stat, i) => (
+            <motion.div
+              key={stat.label}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: i * 0.1 }}
+              className="bg-card border rounded-xl p-5 text-center shadow-sm"
+            >
+              <stat.icon className="h-5 w-5 mx-auto text-primary mb-2" />
+              <div className="text-2xl md:text-3xl font-black text-foreground">
+                {stat.value}{stat.suffix}
+              </div>
+              <div className="text-xs text-muted-foreground mt-1">{stat.label}</div>
+            </motion.div>
+          ))}
         </div>
       </section>
 
@@ -94,6 +135,25 @@ const Index = () => {
               </motion.div>
             );
           })}
+        </div>
+      </section>
+
+      {/* Trending Tags */}
+      <section className="container py-8">
+        <div className="flex items-center gap-3 mb-4">
+          <TrendingUp className="h-5 w-5 text-primary" />
+          <h2 className="text-lg font-bold text-foreground">Trending Topics</h2>
+        </div>
+        <div className="flex flex-wrap gap-2">
+          {trendingTags.map(tag => (
+            <Link
+              key={tag}
+              to={`/search?q=${tag}`}
+              className="px-3 py-1.5 text-xs font-medium rounded-full border border-border text-muted-foreground hover:bg-primary/10 hover:text-primary hover:border-primary/30 transition-colors"
+            >
+              #{tag}
+            </Link>
+          ))}
         </div>
       </section>
 
