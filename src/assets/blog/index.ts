@@ -28,6 +28,16 @@ import blockchainDao from "./blockchain-dao.jpg";
 import privacyGdpr from "./privacy-gdpr.jpg";
 import devopsMonitoring from "./devops-monitoring.jpg";
 import terminalLinux from "./terminal-linux.jpg";
+import aiThreatDetection from "./ai-threat-detection.jpg";
+import zeroTrustModel from "./zero-trust-model.jpg";
+import aiMalware from "./ai-malware.jpg";
+import ransomwareDefense from "./ransomware-defense.jpg";
+import cloudSecurity from "./cloud-security.jpg";
+import bugBounty from "./bug-bounty.jpg";
+import apiSecurity from "./api-security.jpg";
+import supplyChainAttack from "./supply-chain-attack.jpg";
+import aiSecurityAgents from "./ai-security-agents.jpg";
+import quantumSecurity from "./quantum-security.jpg";
 
 export const blogImages: Record<string, string> = {
   "sql-injection": sqlInjection,
@@ -60,4 +70,14 @@ export const blogImages: Record<string, string> = {
   "privacy-gdpr": privacyGdpr,
   "devops-monitoring": devopsMonitoring,
   "terminal-linux": terminalLinux,
+  "ai-threat-detection": aiThreatDetection,
+  "zero-trust-model": zeroTrustModel,
+  "ai-malware": aiMalware,
+  "ransomware-defense": ransomwareDefense,
+  "cloud-security": cloudSecurity,
+  "bug-bounty": bugBounty,
+  "api-security": apiSecurity,
+  "supply-chain-attack": supplyChainAttack,
+  "ai-security-agents": aiSecurityAgents,
+  "quantum-security": quantumSecurity,
 };
