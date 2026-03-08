@@ -121,7 +121,22 @@ const ToolPage = () => {
 
   return (
     <Layout>
-      <SEO title={tool.name} description={tool.description} canonical={`/tools/${tool.slug}`} />
+      <SEO
+        title={tool.name}
+        description={tool.description}
+        canonical={`/tools/${tool.slug}`}
+        breadcrumbs={[
+          { name: "Home", path: "/" },
+          { name: "Tools", path: "/tools" },
+          { name: tool.name, path: `/tools/${tool.slug}` },
+        ]}
+        softwareAppJsonLd={{
+          name: tool.name,
+          description: tool.description,
+          category: tool.category,
+          url: `https://codesecai.com/tools/${tool.slug}`,
+        }}
+      />
       <div className="container py-12 max-w-3xl mx-auto">
         <Link to="/tools" className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-primary mb-6">
           <ArrowLeft className="h-4 w-4" /> Back to Tools

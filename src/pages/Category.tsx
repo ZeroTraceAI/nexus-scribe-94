@@ -25,7 +25,16 @@ const Category = () => {
 
   return (
     <Layout>
-      <SEO title={category.name} description={category.description} canonical={`/category/${category.slug}`} />
+      <SEO
+        title={category.name}
+        description={category.description}
+        canonical={`/category/${category.slug}`}
+        breadcrumbs={[
+          { name: "Home", path: "/" },
+          { name: "Blog", path: "/blog" },
+          { name: category.name, path: `/category/${category.slug}` },
+        ]}
+      />
       <section className="hero-gradient">
         <div className="container py-16 text-center">
           <div className="inline-flex items-center justify-center h-14 w-14 rounded-xl bg-primary/10 text-primary mb-4">

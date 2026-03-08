@@ -9,6 +9,11 @@ const About = () => (
       title="About"
       description="Learn about CodeSecAI — our mission to bridge the knowledge gap in cybersecurity, AI, cloud computing, blockchain, and programming."
       canonical="/about"
+      includeOrgJsonLd
+      breadcrumbs={[
+        { name: "Home", path: "/" },
+        { name: "About", path: "/about" },
+      ]}
     />
     <section className="hero-gradient">
       <div className="container py-16 text-center">

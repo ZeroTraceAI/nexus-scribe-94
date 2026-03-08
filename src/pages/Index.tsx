@@ -16,7 +16,11 @@ const Index = () => {
 
   return (
     <Layout>
-      <SEO canonical="/" />
+      <SEO
+        canonical="/"
+        includeOrgJsonLd
+        breadcrumbs={[{ name: "Home", path: "/" }]}
+      />
       {/* Hero */}
       <section className="hero-gradient relative overflow-hidden">
         <div className="container py-20 md:py-28 text-center relative z-10">

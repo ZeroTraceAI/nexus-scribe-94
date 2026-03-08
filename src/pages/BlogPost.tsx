@@ -102,6 +102,23 @@ const BlogPost = () => {
           section: post.categoryName,
           tags: post.tags,
         }}
+        breadcrumbs={[
+          { name: "Home", path: "/" },
+          { name: "Blog", path: "/blog" },
+          { name: post.categoryName, path: `/category/${post.categorySlug}` },
+          { name: post.title, path: `/blog/${post.slug}` },
+        ]}
+        articleJsonLd={{
+          headline: post.title,
+          description: post.excerpt,
+          image: post.featuredImage,
+          datePublished: post.publishedAt,
+          authorName: post.author.name,
+          authorRole: post.author.role,
+          section: post.categoryName,
+          tags: post.tags,
+          wordCount: post.content.split(/\s+/).length,
+        }}
       />
       <div className="container py-4">
         <nav className="flex items-center gap-2 text-sm text-muted-foreground">
