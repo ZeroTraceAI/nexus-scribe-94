@@ -230,6 +230,17 @@ const toolComponentMap: Record<string, React.ComponentType> = {
   "api-rate-limit-tester": ApiRateLimitTester,
   "coding-interview-generator": CodingInterviewGenerator,
   "web-tech-detector": WebTechDetector,
+  "ai-agents-explorer": AiAgentsExplorer,
+  "ai-cyber-defense": AiCyberDefense,
+  "ai-malware-detector": AiMalwareDetector,
+  "ai-prompt-engineer": AiPromptEngineer,
+  "ai-code-templates": AiCodeGenerator,
+  "ai-content-automation": AiContentAutomation,
+  "ai-video-generator": AiVideoGenerator,
+  "ai-saas-automation": AiSaasAutomation,
+  "ai-research-assistant": AiResearchAssistant,
+  "ai-dev-copilot": AiDevCopilot,
+  "viral-topic-generator": ViralTopicGenerator,
 };
 
 const ToolPage = () => {
