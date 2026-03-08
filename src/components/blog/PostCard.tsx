@@ -14,6 +14,7 @@ const PostCard = forwardRef<HTMLAnchorElement, { post: BlogPost }>(({ post }, re
           height={360}
           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
           loading="lazy"
+          decoding="async"
         />
       </div>
       <div className="p-5 flex flex-col flex-1">
