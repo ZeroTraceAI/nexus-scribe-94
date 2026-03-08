@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 const TermsOfService = () => {
   return (
     <Layout>
-      <SEO title="Terms of Service" description="Read the terms and conditions governing your use of the CodeSecAI website and services." canonical="/terms-of-service" />
+      <SEO title="Terms of Service" description="Read the terms and conditions governing your use of the CodeSecAI website and services." canonical="/terms-of-service" breadcrumbs={[{ name: "Home", path: "/" }, { name: "Terms of Service", path: "/terms-of-service" }]} />
       <div className="container py-12 max-w-4xl">
         <nav className="flex items-center gap-2 text-sm text-muted-foreground mb-8">
           <Link to="/" className="hover:text-primary">Home</Link>
