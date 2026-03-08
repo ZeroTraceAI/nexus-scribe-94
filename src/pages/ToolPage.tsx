@@ -27,6 +27,25 @@ import BlogTitleGenerator from "@/components/tools/BlogTitleGenerator";
 import ContentSeoAnalyzer from "@/components/tools/ContentSeoAnalyzer";
 import CyberRiskScanner from "@/components/tools/CyberRiskScanner";
 import SaasRevenueCalculator from "@/components/tools/SaasRevenueCalculator";
+import MetaDescriptionGenerator from "@/components/tools/MetaDescriptionGenerator";
+import BlogOutlineGenerator from "@/components/tools/BlogOutlineGenerator";
+import KeywordDifficultyChecker from "@/components/tools/KeywordDifficultyChecker";
+import BacklinkOpportunityFinder from "@/components/tools/BacklinkOpportunityFinder";
+import SerpSnippetPreview from "@/components/tools/SerpSnippetPreview";
+import FaqGenerator from "@/components/tools/FaqGenerator";
+import InternalLinkingSuggester from "@/components/tools/InternalLinkingSuggester";
+import ContentGapAnalyzer from "@/components/tools/ContentGapAnalyzer";
+import ReadabilityAnalyzer from "@/components/tools/ReadabilityAnalyzer";
+import KeywordIntentClassifier from "@/components/tools/KeywordIntentClassifier";
+import ContentRewriter from "@/components/tools/ContentRewriter";
+import SchemaMarkupGenerator from "@/components/tools/SchemaMarkupGenerator";
+import RobotsTxtGenerator from "@/components/tools/RobotsTxtGenerator";
+import SitemapGeneratorTool from "@/components/tools/SitemapGeneratorTool";
+import WebsiteSpeedAnalyzer from "@/components/tools/WebsiteSpeedAnalyzer";
+import JsMinifierFormatter from "@/components/tools/JsMinifierFormatter";
+import JsonFormatter from "@/components/tools/JsonFormatter";
+import MarkdownToHtml from "@/components/tools/MarkdownToHtml";
+import CodeBeautifier from "@/components/tools/CodeBeautifier";
 
 const RegexTester = () => {
   const [pattern, setPattern] = useState("");
