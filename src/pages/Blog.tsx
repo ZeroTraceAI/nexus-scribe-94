@@ -5,6 +5,7 @@ import { Input } from "@/components/ui/input";
 import Layout from "@/components/layout/Layout";
 import PostCard from "@/components/blog/PostCard";
 import NewsletterForm from "@/components/shared/NewsletterForm";
+import SEO from "@/components/SEO";
 import { posts } from "@/data/posts";
 import { categories } from "@/data/categories";
 

@@ -1,6 +1,7 @@
 import { useParams, Link } from "react-router-dom";
 import Layout from "@/components/layout/Layout";
 import PostCard from "@/components/blog/PostCard";
+import SEO from "@/components/SEO";
 import { categories, getCategoryIcon } from "@/data/categories";
 import { getPostsByCategory } from "@/data/posts";
 

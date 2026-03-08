@@ -4,6 +4,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import Layout from "@/components/layout/Layout";
+import SEO from "@/components/SEO";
 import { toast } from "@/hooks/use-toast";
 import { Mail, MessageSquare, Clock } from "lucide-react";
 

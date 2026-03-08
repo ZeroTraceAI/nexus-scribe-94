@@ -1,9 +1,15 @@
 import Layout from "@/components/layout/Layout";
+import SEO from "@/components/SEO";
 import { categories } from "@/data/categories";
 import { getCategoryIcon } from "@/data/categories";
 
 const About = () => (
   <Layout>
+    <SEO
+      title="About"
+      description="Learn about CodeSecAI — our mission to bridge the knowledge gap in cybersecurity, AI, cloud computing, blockchain, and programming."
+      canonical="/about"
+    />
     <section className="hero-gradient">
       <div className="container py-16 text-center">
         <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-3">About CodeSecAI</h1>

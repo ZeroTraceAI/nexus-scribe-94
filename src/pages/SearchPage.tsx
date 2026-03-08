@@ -4,6 +4,7 @@ import { Search as SearchIcon } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import Layout from "@/components/layout/Layout";
 import PostCard from "@/components/blog/PostCard";
+import SEO from "@/components/SEO";
 import { posts } from "@/data/posts";
 
 const SearchPage = () => {
