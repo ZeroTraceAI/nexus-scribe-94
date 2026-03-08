@@ -70,6 +70,17 @@ import CodeComplexityAnalyzer from "@/components/tools/CodeComplexityAnalyzer";
 import ApiRateLimitTester from "@/components/tools/ApiRateLimitTester";
 import CodingInterviewGenerator from "@/components/tools/CodingInterviewGenerator";
 import WebTechDetector from "@/components/tools/WebTechDetector";
+import AiAgentsExplorer from "@/components/tools/AiAgentsExplorer";
+import AiCyberDefense from "@/components/tools/AiCyberDefense";
+import AiMalwareDetector from "@/components/tools/AiMalwareDetector";
+import AiPromptEngineer from "@/components/tools/AiPromptEngineer";
+import AiCodeGenerator from "@/components/tools/AiCodeGenerator";
+import AiContentAutomation from "@/components/tools/AiContentAutomation";
+import AiVideoGenerator from "@/components/tools/AiVideoGenerator";
+import AiSaasAutomation from "@/components/tools/AiSaasAutomation";
+import AiResearchAssistant from "@/components/tools/AiResearchAssistant";
+import AiDevCopilot from "@/components/tools/AiDevCopilot";
+import ViralTopicGenerator from "@/components/tools/ViralTopicGenerator";
 
 const RegexTester = () => {
   const [pattern, setPattern] = useState("");
