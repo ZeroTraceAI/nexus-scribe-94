@@ -10,8 +10,9 @@ const Tools = () => {
   return (
     <Layout>
       <SEO
-        title="Free AI-Powered Developer Tools"
-        description="Code generators, vulnerability explainers, SEO analyzers, regex testers, and more — all free, no signup required."
+        title="Free AI Developer Tools — Code, Security & SEO"
+        description="Free AI-powered developer tools: code snippet generator, vulnerability explainer, SEO meta tag generator, regex tester, password checker, smart contract auditor, and more. No signup required."
+        keywords="free developer tools, AI code generator, vulnerability scanner, SEO meta generator, regex tester online, password strength checker, smart contract auditor, cloud architecture tool, code explainer, prompt engineering templates"
         canonical="/tools"
         breadcrumbs={[
           { name: "Home", path: "/" },
