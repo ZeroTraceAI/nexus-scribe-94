@@ -9,6 +9,15 @@ import SEO from "@/components/SEO";
 import { tools } from "@/data/tools";
 import { toast } from "@/hooks/use-toast";
 
+import PromptTemplates from "@/components/tools/PromptTemplates";
+import SeoMetaGenerator from "@/components/tools/SeoMetaGenerator";
+import BlogPostGenerator from "@/components/tools/BlogPostGenerator";
+import CodeSnippetGenerator from "@/components/tools/CodeSnippetGenerator";
+import VulnExplainer from "@/components/tools/VulnExplainer";
+import CloudArchHelper from "@/components/tools/CloudArchHelper";
+import SmartContractAuditor from "@/components/tools/SmartContractAuditor";
+import CodeExplainer from "@/components/tools/CodeExplainer";
+
 const RegexTester = () => {
   const [pattern, setPattern] = useState("");
   const [testStr, setTestStr] = useState("");
@@ -109,13 +118,15 @@ const ToolPage = () => {
     switch (tool.slug) {
       case "regex-tester": return <RegexTester />;
       case "password-checker": return <PasswordChecker />;
-      default:
-        return (
-          <div className="bg-muted/50 rounded-lg p-8 text-center">
-            <p className="text-muted-foreground mb-4">This tool requires a backend AI service to function. Connect to Lovable Cloud to enable AI-powered tools.</p>
-            <p className="text-sm text-muted-foreground">Client-side tools like Regex Tester and Password Checker work immediately.</p>
-          </div>
-        );
+      case "prompt-templates": return <PromptTemplates />;
+      case "seo-meta-generator": return <SeoMetaGenerator />;
+      case "blog-post-generator": return <BlogPostGenerator />;
+      case "code-generator": return <CodeSnippetGenerator />;
+      case "vuln-explainer": return <VulnExplainer />;
+      case "cloud-arch-helper": return <CloudArchHelper />;
+      case "smart-contract-auditor": return <SmartContractAuditor />;
+      case "code-explainer": return <CodeExplainer />;
+      default: return null;
     }
   };
 
