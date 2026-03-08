@@ -5,6 +5,7 @@ import { Input } from "@/components/ui/input";
 import Layout from "@/components/layout/Layout";
 import PostCard from "@/components/blog/PostCard";
 import NewsletterForm from "@/components/shared/NewsletterForm";
+import SEO from "@/components/SEO";
 import { posts } from "@/data/posts";
 import { categories } from "@/data/categories";
 
@@ -34,6 +35,7 @@ const Blog = () => {
 
   return (
     <Layout>
+      <SEO title="Blog" description="Expert articles on cybersecurity, AI, cloud computing, blockchain, and programming." canonical="/blog" />
       <div className="container py-12">
         <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-2">Blog</h1>
         <p className="text-muted-foreground mb-8">Expert articles on cybersecurity, AI, cloud, blockchain, and programming.</p>

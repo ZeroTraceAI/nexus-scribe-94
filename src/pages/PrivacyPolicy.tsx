@@ -1,9 +1,11 @@
 import Layout from "@/components/layout/Layout";
+import SEO from "@/components/SEO";
 import { Link } from "react-router-dom";
 
 const PrivacyPolicy = () => {
   return (
     <Layout>
+      <SEO title="Privacy Policy" description="Learn how CodeSecAI collects, uses, and protects your personal information." canonical="/privacy-policy" />
       <div className="container py-12 max-w-4xl">
         <nav className="flex items-center gap-2 text-sm text-muted-foreground mb-8">
           <Link to="/" className="hover:text-primary">Home</Link>

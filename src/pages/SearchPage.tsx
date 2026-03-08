@@ -4,6 +4,7 @@ import { Search as SearchIcon } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import Layout from "@/components/layout/Layout";
 import PostCard from "@/components/blog/PostCard";
+import SEO from "@/components/SEO";
 import { posts } from "@/data/posts";
 
 const SearchPage = () => {
@@ -24,6 +25,7 @@ const SearchPage = () => {
 
   return (
     <Layout>
+      <SEO title="Search" description="Search CodeSecAI articles, tools, and tutorials." canonical="/search" noindex />
       <div className="container py-12">
         <h1 className="text-3xl font-bold text-foreground mb-6">Search</h1>
         <div className="relative max-w-lg mb-8">

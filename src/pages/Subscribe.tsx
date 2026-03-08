@@ -1,9 +1,15 @@
 import Layout from "@/components/layout/Layout";
 import NewsletterForm from "@/components/shared/NewsletterForm";
+import SEO from "@/components/SEO";
 import { CheckCircle2 } from "lucide-react";
 
 const Subscribe = () => (
   <Layout>
+    <SEO
+      title="Subscribe"
+      description="Get weekly deep dives on cybersecurity, AI, cloud computing, blockchain, and programming delivered free to your inbox."
+      canonical="/subscribe"
+    />
     <div className="container py-16 max-w-xl mx-auto text-center">
       <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-3">Stay Ahead of the Curve</h1>
       <p className="text-muted-foreground mb-8">Get weekly deep dives on cybersecurity, AI, cloud computing, blockchain, and programming — delivered free to your inbox.</p>

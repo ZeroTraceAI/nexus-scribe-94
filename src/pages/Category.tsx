@@ -1,6 +1,7 @@
 import { useParams, Link } from "react-router-dom";
 import Layout from "@/components/layout/Layout";
 import PostCard from "@/components/blog/PostCard";
+import SEO from "@/components/SEO";
 import { categories, getCategoryIcon } from "@/data/categories";
 import { getPostsByCategory } from "@/data/posts";
 
@@ -24,6 +25,7 @@ const Category = () => {
 
   return (
     <Layout>
+      <SEO title={category.name} description={category.description} canonical={`/category/${category.slug}`} />
       <section className="hero-gradient">
         <div className="container py-16 text-center">
           <div className="inline-flex items-center justify-center h-14 w-14 rounded-xl bg-primary/10 text-primary mb-4">

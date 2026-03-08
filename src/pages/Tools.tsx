@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import Layout from "@/components/layout/Layout";
+import SEO from "@/components/SEO";
 import { tools } from "@/data/tools";
 
 const Tools = () => {
@@ -8,6 +9,11 @@ const Tools = () => {
 
   return (
     <Layout>
+      <SEO
+        title="Free AI-Powered Developer Tools"
+        description="Code generators, vulnerability explainers, SEO analyzers, regex testers, and more — all free, no signup required."
+        canonical="/tools"
+      />
       <section className="hero-gradient">
         <div className="container py-16 text-center">
           <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-3">Free AI-Powered Developer Tools</h1>

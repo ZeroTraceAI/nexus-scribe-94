@@ -4,6 +4,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import Layout from "@/components/layout/Layout";
+import SEO from "@/components/SEO";
 import { toast } from "@/hooks/use-toast";
 import { Mail, MessageSquare, Clock } from "lucide-react";
 
@@ -27,6 +28,7 @@ const Contact = () => {
 
   return (
     <Layout>
+      <SEO title="Contact Us" description="Have a question, feedback, or want to collaborate? Get in touch with the CodeSecAI team." canonical="/contact" />
       <div className="container py-12">
         <div className="max-w-2xl mx-auto">
           <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-3">Contact Us</h1>

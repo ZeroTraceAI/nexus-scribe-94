@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import Layout from "@/components/layout/Layout";
 import PostCard from "@/components/blog/PostCard";
 import NewsletterForm from "@/components/shared/NewsletterForm";
+import SEO from "@/components/SEO";
 import { posts, getFeaturedPosts, getPopularPosts } from "@/data/posts";
 import { categories, getCategoryIcon } from "@/data/categories";
 
@@ -15,6 +16,7 @@ const Index = () => {
 
   return (
     <Layout>
+      <SEO canonical="/" />
       {/* Hero */}
       <section className="hero-gradient relative overflow-hidden">
         <div className="container py-20 md:py-28 text-center relative z-10">
