@@ -253,6 +253,15 @@ const ToolPage = () => {
       case "cloud-arch-helper": return <CloudArchHelper />;
       case "smart-contract-auditor": return <SmartContractAuditor />;
       case "code-explainer": return <CodeExplainer />;
+      case "keyword-cluster-generator": return <KeywordClusterGenerator />;
+      case "viral-topic-finder": return <ViralTopicFinder />;
+      case "serp-calculator": return <SerpCalculator />;
+      case "seo-tag-generator": return <SeoTagGenerator />;
+      case "slug-optimizer": return <SlugOptimizer />;
+      case "blog-title-generator": return <BlogTitleGenerator />;
+      case "content-seo-analyzer": return <ContentSeoAnalyzer />;
+      case "cyber-risk-scanner": return <CyberRiskScanner />;
+      case "saas-revenue-calculator": return <SaasRevenueCalculator />;
       default: return null;
     }
   };
