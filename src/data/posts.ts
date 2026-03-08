@@ -1,3 +1,5 @@
+import { blogImages } from "@/assets/blog";
+
 export interface BlogPost {
   id: string;
   title: string;
