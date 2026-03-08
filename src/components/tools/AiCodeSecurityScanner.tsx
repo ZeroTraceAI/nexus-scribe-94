@@ -18,7 +18,7 @@ const scanCode = (code: string): { findings: SecurityFinding[]; score: number; g
   const findings: SecurityFinding[] = [];
   const lines = code.split("\n");
 
-  const rules: [RegExp, string, string, string, "Critical" | "High" | "Medium" | "Low", string, string][] = [
+  const rules: [RegExp, string, string, string, "Critical" | "High" | "Medium" | "Low" | "Info", string, string][] = [
     [/eval\s*\(/g, "Code Injection", "eval() usage detected", "eval() executes arbitrary code and is a primary injection vector", "Critical", "Use Function constructors, JSON.parse, or AST-based evaluation", "CWE-94"],
     [/innerHTML\s*=|\.html\s*\(/g, "XSS", "Unsafe HTML injection", "Direct HTML insertion without sanitization enables Cross-Site Scripting", "High", "Use textContent, DOMPurify.sanitize(), or framework-safe methods", "CWE-79"],
     [/document\.write/g, "XSS", "document.write usage", "document.write can inject arbitrary content including scripts", "High", "Use DOM manipulation methods instead", "CWE-79"],
