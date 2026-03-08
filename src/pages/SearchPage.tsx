@@ -25,6 +25,7 @@ const SearchPage = () => {
 
   return (
     <Layout>
+      <SEO title="Search" description="Search CodeSecAI articles, tools, and tutorials." canonical="/search" noindex />
       <div className="container py-12">
         <h1 className="text-3xl font-bold text-foreground mb-6">Search</h1>
         <div className="relative max-w-lg mb-8">
