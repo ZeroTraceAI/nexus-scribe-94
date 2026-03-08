@@ -13,6 +13,7 @@ const BlogPost = () => {
   const { slug } = useParams<{ slug: string }>();
   const post = getPostBySlug(slug || "");
   const [copied, setCopied] = useState(false);
+  const headings = post ? extractHeadings(post.content) : [];
 
   if (!post) {
     return (
