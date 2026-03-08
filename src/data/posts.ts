@@ -156,7 +156,7 @@ SQL injection is a solved problem from a technical standpoint — parameterized 
     categorySlug: "cyber-security",
     categoryName: "Cyber Security",
     tags: ["sql-injection", "owasp", "web-security", "penetration-testing"],
-    author: { name: "Alex Chen", avatar: "https://api.dicebear.com/9.x/avataaars/svg?seed=Alex", role: "Security Engineer" },
+    author: AUTHOR,
     publishedAt: "2026-03-01",
     readingTime: 12,
     viewCount: 4520,
