@@ -173,9 +173,7 @@ const BlogPost = () => {
 
           {/* TOC Sidebar - desktop only */}
           <aside className="hidden xl:block w-64 shrink-0">
-            <div className="pt-[420px]">
-              <TableOfContents headings={headings} />
-            </div>
+            <TableOfContents headings={headings} />
           </aside>
         </div>
       </article>
