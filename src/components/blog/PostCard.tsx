@@ -1,9 +1,10 @@
+import { forwardRef } from "react";
 import { Link } from "react-router-dom";
-import { Clock, Eye, MessageSquare } from "lucide-react";
+import { Clock, Eye } from "lucide-react";
 import type { BlogPost } from "@/data/posts";
 
-const PostCard = ({ post }: { post: BlogPost }) => (
-  <Link to={`/blog/${post.slug}`} className="group block">
+const PostCard = forwardRef<HTMLAnchorElement, { post: BlogPost }>(({ post }, ref) => (
+  <Link ref={ref} to={`/blog/${post.slug}`} className="group block">
     <article className="bg-card rounded-lg border overflow-hidden hover:shadow-lg transition-all duration-300 hover:-translate-y-1 h-full flex flex-col">
       <div className="aspect-video overflow-hidden">
         <img
@@ -38,6 +39,8 @@ const PostCard = ({ post }: { post: BlogPost }) => (
       </div>
     </article>
   </Link>
-);
+));
+
+PostCard.displayName = "PostCard";
 
 export default PostCard;

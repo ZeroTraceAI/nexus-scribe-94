@@ -86,7 +86,8 @@ const Index = () => {
             <motion.div
               key={stat.label}
               initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
               className="bg-card border rounded-xl p-5 text-center shadow-sm"
             >
@@ -108,7 +109,7 @@ const Index = () => {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {featured.map((post, i) => (
-            <motion.div key={post.id} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.1 }}>
+            <motion.div key={post.id} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }}>
               <PostCard post={post} />
             </motion.div>
           ))}
@@ -122,7 +123,7 @@ const Index = () => {
           {categories.map((cat, i) => {
             const Icon = getCategoryIcon(cat.icon);
             return (
-              <motion.div key={cat.id} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.08 }}>
+              <motion.div key={cat.id} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.08 }}>
                 <Link to={`/category/${cat.slug}`} className="block group">
                   <div className="bg-card border rounded-lg p-5 hover:shadow-md hover:border-primary/30 transition-all text-center h-full">
                     <div className="inline-flex items-center justify-center h-12 w-12 rounded-lg bg-primary/10 text-primary mb-3 group-hover:bg-primary group-hover:text-primary-foreground transition-colors">

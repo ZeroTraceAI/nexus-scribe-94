@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { forwardRef, useEffect, useState } from "react";
 import { List } from "lucide-react";
 
 export interface TocHeading {
@@ -33,7 +33,7 @@ interface TableOfContentsProps {
   headings: TocHeading[];
 }
 
-const TableOfContents = ({ headings }: TableOfContentsProps) => {
+const TableOfContents = forwardRef<HTMLElement, TableOfContentsProps>(({ headings }, ref) => {
   const [activeId, setActiveId] = useState<string>("");
 
   useEffect(() => {
@@ -41,7 +41,6 @@ const TableOfContents = ({ headings }: TableOfContentsProps) => {
 
     const observer = new IntersectionObserver(
       (entries) => {
-        // Find the first visible heading
         const visible = entries.filter((e) => e.isIntersecting);
         if (visible.length > 0) {
           setActiveId(visible[0].target.id);
@@ -68,7 +67,7 @@ const TableOfContents = ({ headings }: TableOfContentsProps) => {
   };
 
   return (
-    <nav className="sticky top-24">
+    <nav ref={ref} className="sticky top-24">
       <div className="flex items-center gap-2 mb-3">
         <List className="h-4 w-4 text-primary" />
         <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
@@ -95,6 +94,8 @@ const TableOfContents = ({ headings }: TableOfContentsProps) => {
       </ul>
     </nav>
   );
-};
+});
+
+TableOfContents.displayName = "TableOfContents";
 
 export default TableOfContents;
