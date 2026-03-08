@@ -25,7 +25,7 @@ const PostCard = ({ post }: { post: BlogPost }) => (
         </p>
         <div className="flex items-center justify-between text-xs text-muted-foreground">
           <div className="flex items-center gap-2">
-            <img src={post.author.avatar} alt={post.author.name} className="h-5 w-5 rounded-full" />
+            <img src={post.author.avatar} alt={post.author.name} className="h-5 w-5 rounded-full" loading="lazy" />
             <span>{post.author.name}</span>
           </div>
           <div className="flex items-center gap-3">
