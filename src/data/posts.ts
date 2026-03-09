@@ -1,5 +1,6 @@
 import { blogImages } from "@/assets/blog";
 import { cybersecurityPosts } from "./cybersecurity-posts";
+import { aiPosts } from "./ai-posts";
 
 export interface BlogPost {
   id: string;
@@ -6881,8 +6882,9 @@ WebAssembly beyond the browser is not hype — it's production reality in 2026. 
   },
 ];
 
-// Merge cybersecurity posts into main array
+// Merge additional posts into main array
 posts.push(...cybersecurityPosts);
+posts.push(...aiPosts);
 
 export const getPostsByCategory = (slug: string) => posts.filter(p => p.categorySlug === slug);
 export const getFeaturedPosts = () => posts.filter(p => p.featured);
