@@ -38,6 +38,16 @@ import apiSecurity from "./api-security.jpg";
 import supplyChainAttack from "./supply-chain-attack.jpg";
 import aiSecurityAgents from "./ai-security-agents.jpg";
 import quantumSecurity from "./quantum-security.jpg";
+import promptEngineering from "./prompt-engineering.jpg";
+import autonomousAiAgents from "./autonomous-ai-agents.jpg";
+import llmFineTuning from "./llm-fine-tuning.jpg";
+import computerVision from "./computer-vision.jpg";
+import aiEthics from "./ai-ethics.jpg";
+import nlpTransformers from "./nlp-transformers.jpg";
+import generativeAi from "./generative-ai.jpg";
+import mlopsPipeline from "./mlops-pipeline.jpg";
+import aiCodeGeneration from "./ai-code-generation.jpg";
+import multimodalAi from "./multimodal-ai.jpg";
 
 export const blogImages: Record<string, string> = {
   "sql-injection": sqlInjection,
@@ -80,4 +90,14 @@ export const blogImages: Record<string, string> = {
   "supply-chain-attack": supplyChainAttack,
   "ai-security-agents": aiSecurityAgents,
   "quantum-security": quantumSecurity,
+  "prompt-engineering": promptEngineering,
+  "autonomous-ai-agents": autonomousAiAgents,
+  "llm-fine-tuning": llmFineTuning,
+  "computer-vision": computerVision,
+  "ai-ethics": aiEthics,
+  "nlp-transformers": nlpTransformers,
+  "generative-ai": generativeAi,
+  "mlops-pipeline": mlopsPipeline,
+  "ai-code-generation": aiCodeGeneration,
+  "multimodal-ai": multimodalAi,
 };
