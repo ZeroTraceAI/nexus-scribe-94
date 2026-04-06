@@ -1,73 +1,146 @@
-# Welcome to your Lovable project
+# CodeSecAI - Cybersecurity, AI & Programming Platform
 
-## Project info
+A modern web platform built with React, TypeScript, and Vite, offering tools and resources for developers and security professionals.
 
-**URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
+## 🚀 Features
 
-## How can I edit this code?
+- **Developer Tools**: Collection of web-based tools including:
+  - Security Header Checker
+  - SSL Certificate Checker
+  - DNS Lookup
+  - WHOIS Lookup
+  - Sitemap Generator
+  - Schema Markup Generator
+  - And more...
 
-There are several ways of editing your application.
+- **Modern Tech Stack**:
+  - ⚛️ React 18 with TypeScript
+  - ⚡ Vite for blazing fast development
+  - 🎨 Tailwind CSS + shadcn/ui for beautiful UI
+  - 🧪 Vitest for testing
+  - 🔍 ESLint for code quality
 
-**Use Lovable**
+- **SEO Optimized**: Built-in SEO component with structured data support
+- **Responsive Design**: Works on all devices
+- **Accessibility**: ARIA-compliant components
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and start prompting.
+## 📋 Prerequisites
 
-Changes made via Lovable will be committed automatically to this repo.
+- Node.js 20+ ([install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating))
+- npm or bun package manager
 
-**Use your preferred IDE**
+## 🛠️ Getting Started
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+### Installation
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
+```bash
+# Clone the repository
 git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
 cd <YOUR_PROJECT_NAME>
 
-# Step 3: Install the necessary dependencies.
-npm i
+# Install dependencies
+npm install
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
+# Copy environment variables template
+cp .env.example .env.local
 ```
 
-**Edit a file directly in GitHub**
+### Development
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+```bash
+# Start development server
+npm run dev
 
-**Use GitHub Codespaces**
+# Run tests
+npm run test
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+# Run linter
+npm run lint
 
-## What technologies are used for this project?
+# Type check
+npx tsc --noEmit
+```
 
-This project is built with:
+### Production Build
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+```bash
+# Build for production
+npm run build
 
-## How can I deploy this project?
+# Preview production build
+npm run preview
+```
 
-Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
+## 📁 Project Structure
 
-## Can I connect a custom domain to my Lovable project?
+```
+/workspace
+├── src/
+│   ├── components/     # Reusable UI components
+│   │   ├── tools/      # Tool-specific components
+│   │   └── shared/     # Shared components
+│   ├── pages/          # Page components
+│   ├── hooks/          # Custom React hooks
+│   ├── lib/            # Utility functions
+│   ├── assets/         # Static assets
+│   └── test/           # Test files
+├── public/             # Public static files
+├── .github/workflows/  # CI/CD pipelines
+└── config files        # TypeScript, ESLint, Vite, etc.
+```
 
-Yes, you can!
+## 🧪 Testing
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+```bash
+# Run all tests
+npm run test
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+# Run tests in watch mode
+npm run test:watch
+
+# Run specific test file
+npm run test -- path/to/test.tsx
+```
+
+## 🔧 Configuration
+
+### Environment Variables
+
+Copy `.env.example` to `.env.local` and configure your environment variables:
+
+```bash
+VITE_API_KEY=your_api_key_here
+VITE_GOOGLE_ANALYTICS_ID=G-XXXXXXXXXX
+```
+
+### TypeScript
+
+This project uses strict TypeScript configuration for better type safety. See `tsconfig.json` for details.
+
+### ESLint
+
+Code quality is enforced via ESLint with TypeScript support. Rules are configured in `eslint.config.js`.
+
+## 🚢 Deployment
+
+The project can be deployed to any static hosting service:
+
+- **Vercel**: Connect your GitHub repo for automatic deployments
+- **Netlify**: Drag and drop the `dist` folder or connect Git
+- **Cloudflare Pages**: Deploy directly from Git
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+## 📄 License
+
+This project is private and proprietary.
+
+## 📞 Support
+
+For issues and questions, please open an issue on GitHub.
