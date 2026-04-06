@@ -10,7 +10,9 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "test": "vitest run",
-    "test:watch": "vitest"
+    "test:watch": "vitest",
+    "automation:start": "tsx src/services/content-automation.ts --start",
+    "automation:run": "tsx src/services/content-automation.ts --run-once"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",
